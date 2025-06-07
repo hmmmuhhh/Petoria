@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get a Pet</title>
+    <script src="/js/get-a-pet.js" defer></script>
+    <style>
+        .pet-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 15px 0;
+            max-width: 250px;
+        }
+
+        .pet-card img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 1px solid #999;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<h1>Available Pets</h1>
+<button onclick="openModal()">Add Pet</button>
+
+<!-- Modal Form -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h3>Add a Pet</h3>
+        <form id="addPetForm">
+            <input type="text" name="name" placeholder="Name" required><br><br>
+            <input type="number" name="price" step="0.01" placeholder="Price"><br><br>
+            <textarea name="description" placeholder="Description"></textarea><br><br>
+            <input type="text" name="photoUrl" id="photoUrl" placeholder="Photo URL"><br>
+            <span id="urlError" style="color:red; display:none;">Please enter a valid image URL</span><br>
+            <button type="submit">Submit</button>
+            <button type="button" onclick="closeModal()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<div id="petList"></div>
+
+<button onclick="loadPage(-1)">Previous</button>
+<button onclick="loadPage(1)">Next</button>
+</body>
+</html>

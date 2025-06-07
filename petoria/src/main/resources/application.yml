@@ -11,3 +11,6 @@ spring:
   jjwt:
     duration: 300000
     secret: ${JJWT_SECRET}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
