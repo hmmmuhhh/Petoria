@@ -52,14 +52,24 @@ async function validateImageURL(url) {
 }
 
 async function loadPage(offset) {
-    currentPage += offset;
-    if (currentPage < 0) currentPage = 0;
+    if (offset === 0) {
+        currentPage = 0; // full reset on load or retry
+    } else {
+        currentPage += offset;
+        if (currentPage < 0) currentPage = 0;
+    }
 
     const res = await fetch(`/api/pets?page=${currentPage}`);
     const pets = await res.json();
 
     const list = document.getElementById("petList");
     list.innerHTML = "";
+
+    if (pets.length === 0 && currentPage > 0) {
+        currentPage = 0;
+        loadPage(0); // force fallback to first page
+        return;
+    }
 
     pets.forEach(p => {
         const card = document.createElement("div");
@@ -74,3 +84,7 @@ async function loadPage(offset) {
         list.appendChild(card);
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadPage(0);
+});

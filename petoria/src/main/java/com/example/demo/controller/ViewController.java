@@ -8,16 +8,16 @@ public class ViewController {
 
     @GetMapping("/")
     public String home() {
-        return "index"; // points to templates/index.html
+        return "index"; // → loads templates/index.html
     }
 
     @GetMapping("/getapet")
     public String getAPetPage() {
-        return "get-a-pet"; // templates/get-a-pet.html
+        return "get-a-pet"; // → loads templates/get-a-pet.html
     }
 
     @GetMapping("/pet/{id}")
     public String petDetailPage() {
-        return "pet-detail";
+        return "pet-detail"; // → loads templates/pet-detail.html
     }
 }

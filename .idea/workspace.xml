@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="24118ac2-078d-4de2-9d1e-f58392c4c6f9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules/petoria.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/demo.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/example/demo/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/example/demo/controller/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/get-a-pet.js" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/get-a-pet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/pet-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/pet-detail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/pet-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/pet-detail.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/petoria">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2yDaN8RKjJmPQoYoLvPxO6y7mTU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Desktop\Petoria\petoria\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="petoria" type="Application" factoryName="Application">
+      <envs>
+        <env name="DB_URL" value="jdbc:postgresql://localhost:5432/petoria" />
+        <env name="DB_USER" value="postgres" />
+        <env name="DB_PASS" value="314159265" />
+        <env name="JJWT_SECRET" value="3141592653589793238462643383279502" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.DemoApplication" />
+      <module name="petoria.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="24118ac2-078d-4de2-9d1e-f58392c4c6f9" name="Changes" comment="" />
+      <created>1749371556320</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1749371556320</updated>
+    </task>
+    <servers />
+  </component>
+</project>
