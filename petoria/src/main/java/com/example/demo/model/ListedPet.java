@@ -31,11 +31,7 @@ public class ListedPet {
 
     @ManyToOne
     @JoinColumn(name = "provider_id")
-    private OfficialProvider provider; // nullable for individual posts
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private OfficialProvider provider;
 
     public void setName(String name) {
         this.name = name;

@@ -2,19 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Petoria | Home</title>
+    <title>Petoria - Home</title>
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-<h1>Welcome to Petoria</h1>
-<p>Select a section:</p>
-
-<button onclick="location.href='/getapet'">Get a Pet</button>
-<button onclick="location.href='lost-and-found.html'">Lost & Found</button>
-<button onclick="location.href='directory.html'">Directory</button>
-<button onclick="location.href='qa.html'">Q&A</button>
-<button onclick="location.href='blog.html'">Blog</button>
-<button onclick="location.href='messages.html'">Messages</button>
-<button onclick="location.href='profile.html'">Profile</button>
-<button onclick="location.href='settings.html'">Settings</button>
+<div class="sidebar">
+    <ul>
+        <li><a href="/"><i class="fas fa-home"></i><span>Home</span></a></li>
+        <li><a href="/getapet"><i class="fas fa-dog"></i><span>Get a Pet</span></a></li>
+        <li><a href="/lost-and-found"><i class="fas fa-search"></i><span>Lost & Found</span></a></li>
+        <li><a href="#"><i class="fas fa-stethoscope"></i><span>Vets & Grooming</span></a></li>
+        <li><a href="#"><i class="fas fa-question-circle"></i><span>Q&A</span></a></li>
+        <li><a href="#"><i class="fas fa-blog"></i><span>Blog</span></a></li>
+    </ul>
+</div>
+<div class="main-content">
+    <header>
+        <h1>Petoria</h1>
+        <p class="slogan">Sniff. Click. Connect</p>
+    </header>
+    <section class="intro">
+        <p>Welcome to Petoria — your one-stop hub for adopting, caring, and reuniting with pets. (yes the css is from chatgpt, I'll actually make it pretty eventually.)</p>
+    </section>
+    <section class="section-preview">
+        <div class="preview-card">
+            <h2>Lost & Found</h2>
+            <p>Report or find lost pets in your area.</p>
+            <a href="/lost-and-found">Go to Section &rarr;</a>
+        </div>
+    </section>
+</div>
 </body>
 </html>

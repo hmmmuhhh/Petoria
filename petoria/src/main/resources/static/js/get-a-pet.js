@@ -53,7 +53,7 @@ async function validateImageURL(url) {
 
 async function loadPage(offset) {
     if (offset === 0) {
-        currentPage = 0; // full reset on load or retry
+        currentPage = 0;
     } else {
         currentPage += offset;
         if (currentPage < 0) currentPage = 0;
@@ -67,7 +67,7 @@ async function loadPage(offset) {
 
     if (pets.length === 0 && currentPage > 0) {
         currentPage = 0;
-        loadPage(0); // force fallback to first page
+        loadPage(0);
         return;
     }
 

@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24118ac2-078d-4de2-9d1e-f58392c4c6f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules/petoria.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/demo.main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/css/home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/css/pet-detail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/css/sidebar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/lost-and-found.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/example/demo/controller/GetAPetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/example/demo/controller/GetAPetController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/example/demo/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/example/demo/controller/ViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/get-a-pet.js" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/get-a-pet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/pet-detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/pet-detail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/css/get-a-pet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/get-a-pet.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/get-a-pet.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/pet-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/pet-detail.html" afterDir="false" />
     </list>
@@ -42,6 +40,14 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -58,6 +64,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -66,6 +73,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Desktop\Petoria\petoria\src\main\resources\static\img" />
+      <recent name="C:\Users\Admin\Desktop\Petoria\petoria\src\main\resources\static" />
       <recent name="C:\Users\Admin\Desktop\Petoria\petoria\src\main\resources" />
     </key>
   </component>
