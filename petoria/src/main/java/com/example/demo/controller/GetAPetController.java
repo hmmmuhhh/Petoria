@@ -16,11 +16,6 @@ public class GetAPetController {
 
     private final ListedPetService service;
 
-//    @GetMapping
-//    public List<ListedPet> getAllPets(@RequestParam(defaultValue = "0") int page) {
-//        return service.getAllPetsPaged(page, 9).getContent();
-//    }
-
     @GetMapping("/{id}")
     public ListedPet getPet(@PathVariable Long id) {
         return service.getPetById(id);

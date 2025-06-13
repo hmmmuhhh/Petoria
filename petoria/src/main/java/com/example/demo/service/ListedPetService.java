@@ -25,28 +25,6 @@ public class ListedPetService {
         return repository.findAllByOrderBySubmissionTimeDesc(PageRequest.of(page, size));
     }
 
-//    public List<ListedPet> getAllPets(int page, String sortBy) {
-//        Pageable pageable;
-//        switch (sortBy) {
-//            case "priceAsc":
-//                pageable = PageRequest.of(page, 9, Sort.by("price").ascending());
-//                break;
-//            case "priceDesc":
-//                pageable = PageRequest.of(page, 9, Sort.by("price").descending());
-//                break;
-//            case "dog":
-//            case "cat":
-//            case "bird":
-//            case "other":
-//                pageable = PageRequest.of(page, 9, Sort.by("submissionTime").descending());
-//                return (List<ListedPet>) repository.findByType(sortBy, pageable);
-//            default:
-//                pageable = PageRequest.of(page, 9, Sort.by("submissionTime").descending());
-//        }
-//
-//        return repository.findAll(pageable).getContent();
-//    }
-
     public List<ListedPetDto> getAllPets(int page, String sort) {
         Pageable pageable;
         switch (sort) {
