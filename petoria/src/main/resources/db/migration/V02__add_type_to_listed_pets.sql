@@ -1,0 +1,1 @@
+ALTER TABLE listed_pets ADD COLUMN type VARCHAR(20);

@@ -18,7 +18,8 @@ document.getElementById("addPetForm").addEventListener("submit", async (e) => {
         name: form.name.value,
         price: parseFloat(form.price.value),
         description: form.description.value,
-        photoUrl: photoInput.value
+        photoUrl: photoInput.value,
+        type: form.type.value
     };
 
     const isValid = await validateImageURL(data.photoUrl);
@@ -52,6 +53,8 @@ async function validateImageURL(url) {
 }
 
 async function loadPage(offset) {
+    const sortValue = document.getElementById("sortFilter")?.value || "newest";
+
     if (offset === 0) {
         currentPage = 0;
     } else {
@@ -59,7 +62,7 @@ async function loadPage(offset) {
         if (currentPage < 0) currentPage = 0;
     }
 
-    const res = await fetch(`/api/pets?page=${currentPage}`);
+    const res = await fetch(`/api/pets?page=${currentPage}&sort=${sortValue}`);
     const pets = await res.json();
 
     const list = document.getElementById("petList");
@@ -83,6 +86,13 @@ async function loadPage(offset) {
         `;
         list.appendChild(card);
     });
+}
+
+function applySort() {
+    const selected = document.getElementById("sortFilter").value;
+    currentSort = selected;
+    currentPage = 0;
+    loadPage(0);
 }
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -18,6 +18,9 @@ public class ListedPet {
     @Column(nullable = false)
     private String name;
 
+    @Column(name = "type")
+    private String type;
+
     private BigDecimal price;
 
     @Column(columnDefinition = "TEXT")
@@ -55,5 +58,9 @@ public class ListedPet {
 
     public void setProvider(OfficialProvider provider) {
         this.provider = provider;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -12,7 +12,18 @@
     <button onclick="location.href='/'" class="back-button">Back to Home</button>
     <button onclick="openModal()" class="add-button">+ Add Pet</button>
 </header>
-
+<!-- Sorting Controls -->
+<div class="sort-container">
+    <select id="sortFilter" onchange="applySort()">
+        <option value="newest">Newest</option>
+        <option value="priceAsc">Price: Low to High</option>
+        <option value="priceDesc">Price: High to Low</option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="bird">Bird</option>
+        <option value="other">Other</option>
+    </select>
+</div>
 <div class="pagination">
     <button onclick="loadPage(-1)">Previous</button>
     <button onclick="loadPage(1)">Next</button>
@@ -23,6 +34,13 @@
         <h2>Add a Pet</h2>
         <form id="addPetForm">
             <input type="text" name="name" placeholder="Name" required>
+            <select name="type" required>
+                <option value="" disabled selected>Select Pet Type</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="bird">Bird</option>
+                <option value="other">Other</option>
+            </select>
             <input type="number" name="price" step="0.01" placeholder="Price">
             <textarea name="description" placeholder="Description"></textarea>
             <input type="text" name="photoUrl" id="photoUrl" placeholder="Photo URL">
