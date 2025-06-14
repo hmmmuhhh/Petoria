@@ -1,0 +1,8 @@
+ALTER TABLE listed_pets
+DROP CONSTRAINT IF EXISTS fk_user;
+
+ALTER TABLE listed_pets
+DROP COLUMN IF EXISTS user_id;
+
+ALTER TABLE listed_pets
+ADD COLUMN user_id BIGINT;

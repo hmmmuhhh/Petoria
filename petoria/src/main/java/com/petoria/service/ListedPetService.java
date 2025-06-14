@@ -1,9 +1,9 @@
-package com.example.demo.service;
+package com.petoria.service;
 
 
-import com.example.demo.dto.ListedPetDto;
-import com.example.demo.model.ListedPet;
-import com.example.demo.repository.ListedPetRepository;
+import com.petoria.dto.ListedPetDto;
+import com.petoria.model.ListedPet;
+import com.petoria.repository.ListedPetRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.data.domain.Page;
@@ -69,7 +69,7 @@ public class ListedPetService {
         pet.setPhotoUrl(dto.getPhotoUrl());
         pet.setType(dto.getType());
         pet.setSubmissionTime(LocalDateTime.now());
-
+        pet.setUserId(dto.getUserId());
         repository.save(pet);
         return dto;
     }

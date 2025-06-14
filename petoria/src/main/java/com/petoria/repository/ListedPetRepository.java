@@ -1,7 +1,7 @@
-package com.example.demo.repository;
+package com.petoria.repository;
 
 
-import com.example.demo.model.ListedPet;
+import com.petoria.model.ListedPet;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.petoria.controller;
 
-import com.example.demo.dto.ListedPetDto;
-import com.example.demo.model.ListedPet;
-import com.example.demo.service.ListedPetService;
+import com.petoria.dto.ListedPetDto;
+import com.petoria.model.ListedPet;
+import com.petoria.service.ListedPetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

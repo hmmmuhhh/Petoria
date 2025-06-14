@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.petoria.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,4 +14,5 @@ public class ListedPetDto {
     private String description;
     private String photoUrl;
     private String type;
+    private Long userId;
 }

@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.petoria.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -32,12 +32,15 @@ public class ListedPet {
     @Column(name = "photo_url")
     private String photoUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "provider_id")
-    private OfficialProvider provider;
+    @Column(name = "user_id")
+    private Long userId;
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setPrice(BigDecimal price) {
@@ -56,11 +59,7 @@ public class ListedPet {
         this.photoUrl = photoUrl;
     }
 
-    public void setProvider(OfficialProvider provider) {
-        this.provider = provider;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
