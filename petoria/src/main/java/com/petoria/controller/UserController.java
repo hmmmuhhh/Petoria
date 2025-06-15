@@ -1,18 +1,54 @@
 package com.petoria.controller;
 
 import com.petoria.dto.UserDto;
-import com.petoria.service.UserService;
+import com.petoria.service.AuthService;
+import com.petoria.util.CredentialsValidator;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class UserController {
-    private final UserService userService;
 
-    @PostMapping
-    public UserDto createUser(@RequestBody UserDto userDto) {
-        return userService.createUser(userDto);
+    private final AuthService authService;
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody UserDto user) {
+        if (!CredentialsValidator.isValidUsername(user.getUsername())) {
+            return ResponseEntity.badRequest().body("Invalid username.");
+        }
+        if (!CredentialsValidator.isValidEmail(user.getEmail())) {
+            return ResponseEntity.badRequest().body("Invalid email.");
+        }
+        if (!CredentialsValidator.isValidPassword(user.getPassword())) {
+            return ResponseEntity.badRequest().body("Weak password.");
+        }
+        if (!CredentialsValidator.isOldEnough(user.getBirthday())) {
+            return ResponseEntity.badRequest().body("User must be at least 13 years old.");
+        }
+
+        authService.createUser(user);
+        return ResponseEntity.ok("User registered successfully.");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserDto user) {
+        try {
+            String token = authService.authenticateUser(user);
+            return ResponseEntity.ok(token);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials.");
+        }
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "Logged out";
     }
 }
+

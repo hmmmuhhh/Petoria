@@ -3,11 +3,18 @@ package com.petoria.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
 @Controller
 public class ViewController {
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
+            model.addAttribute("username", auth.getName()); // or get from UserDetails if needed
+        }
         return "index";
     }
 
@@ -21,8 +28,13 @@ public class ViewController {
         return "pet-detail";
     }
 
-    @GetMapping("/lost-and-found")
-    public String lostAndFoundPage() {
-        return "lost-and-found";
+    @GetMapping("/signup")
+    public String signupPage() {
+        return "signup";
+    }
+
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
     }
 }

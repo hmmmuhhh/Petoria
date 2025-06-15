@@ -61,7 +61,7 @@ public class ListedPetService {
         return dto;
     }
 
-    public ListedPetDto addPet(ListedPetDto dto) {
+    public ListedPet addPet(ListedPetDto dto, Long userId) {
         ListedPet pet = new ListedPet();
         pet.setName(dto.getName());
         pet.setPrice(dto.getPrice());
@@ -69,9 +69,10 @@ public class ListedPetService {
         pet.setPhotoUrl(dto.getPhotoUrl());
         pet.setType(dto.getType());
         pet.setSubmissionTime(LocalDateTime.now());
-        pet.setUserId(dto.getUserId());
+        pet.setUserId(userId);
         repository.save(pet);
-        return dto;
+//        return dto;
+        return repository.save(pet);
     }
 
     public ListedPet getPetById(Long id) {

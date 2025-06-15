@@ -3,6 +3,7 @@ package com.petoria.controller;
 import com.petoria.dto.ListedPetDto;
 import com.petoria.model.ListedPet;
 import com.petoria.service.ListedPetService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,13 @@ public class GetAPetController {
     }
 
     @PostMapping
-    public ResponseEntity<ListedPetDto> addPet(@RequestBody ListedPetDto dto) {
-        return ResponseEntity.ok(service.addPet(dto));
+    public ListedPet addPet(@RequestBody ListedPetDto dto, HttpSession session) {
+        Object userId = session.getAttribute("userId");
+        if (userId == null) {
+            throw new IllegalStateException("User must be logged in to add pets.");
+        }
+//        return ResponseEntity.ok(service.addPet(dto));
+        return service.addPet(dto, Long.parseLong(userId.toString()));
     }
 
     @GetMapping
