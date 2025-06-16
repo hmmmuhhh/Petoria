@@ -6,38 +6,50 @@
     <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/popup.css">
+    <script src="/js/user.js" defer></script>
 </head>
 <body>
+
 <div class="auth-buttons">
     <button onclick="location.href='/signup'">Sign Up</button>
     <button onclick="location.href='/login'">Log In</button>
 </div>
+
 <div class="top-bar">
-    <div class="welcome-message">
-        <span th:if="${username != null}">
-            Welcome, <b th:text="${username}">User</b>!
-        </span>
-    </div>
-    <button onclick="location.href='/logout'" class="logout-btn">Log out</button>
+    <span id="username-display"></span>
+    <button onclick="logout()" class="logout-btn" id="logoutBtn">Log out</button>
+
 </div>
+
+<div id="auth-popup" style="display: none;" class="popup-overlay">
+    <div class="popup-content">
+        <p>To access this section, please log in or sign up.</p>
+        <a href="/login" class="btn">Log in</a>
+        <a href="/signup" class="btn">Sign up</a>
+    </div>
+</div>
+
 
 <div class="sidebar">
     <ul>
         <li><a href="/"><i class="fas fa-home"></i><span>Home</span></a></li>
-        <li><a href="/getapet"><i class="fas fa-dog"></i><span>Get a Pet</span></a></li>
+        <li><a href="#" class="nav-link" data-section="getapet"><i class="fas fa-dog"></i><span>Get a Pet</span></a></li>
         <li><a href="/lost-and-found"><i class="fas fa-search"></i><span>Lost & Found</span></a></li>
         <li><a href="#"><i class="fas fa-stethoscope"></i><span>Vets & Grooming</span></a></li>
         <li><a href="#"><i class="fas fa-question-circle"></i><span>Q&A</span></a></li>
         <li><a href="#"><i class="fas fa-blog"></i><span>Blog</span></a></li>
     </ul>
 </div>
+
 <div class="main-content">
     <header>
         <h1>Petoria</h1>
         <p class="slogan">Sniff. Click. Connect</p>
     </header>
     <section class="intro">
-        <p>Welcome to Petoria — your one-stop hub for adopting, caring, and reuniting with pets. (yes the css is from chatgpt, I'll actually make it pretty eventually.)</p>
+        <p>Welcome to Petoria — your one-stop hub for adopting, caring, and reuniting with pets. (yes the css is from
+            chatgpt, I'll actually make it pretty eventually.)</p>
     </section>
     <section class="section-preview">
         <div class="preview-card">
@@ -47,5 +59,6 @@
         </div>
     </section>
 </div>
+
 </body>
 </html>

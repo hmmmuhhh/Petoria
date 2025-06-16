@@ -2,8 +2,8 @@ package com.petoria.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Getter
 @Entity

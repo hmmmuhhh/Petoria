@@ -2,7 +2,9 @@ package com.petoria.controller;
 
 import com.petoria.dto.UserDto;
 import com.petoria.service.AuthService;
-import com.petoria.util.CredentialsValidator;
+import com.petoria.util.CredsValidator;
+import com.petoria.util.TokenUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,22 +17,24 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final AuthService authService;
+    private final TokenUtils tokenUtils;
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody UserDto user) {
-        if (!CredentialsValidator.isValidUsername(user.getUsername())) {
+        if (!CredsValidator.isValidUsername(user.getUsername())) {
             return ResponseEntity.badRequest().body("Invalid username.");
         }
-        if (!CredentialsValidator.isValidEmail(user.getEmail())) {
+        if (!CredsValidator.isValidEmail(user.getEmail())) {
             return ResponseEntity.badRequest().body("Invalid email.");
         }
-        if (!CredentialsValidator.isValidPassword(user.getPassword())) {
+        if (!CredsValidator.isValidPassword(user.getPassword())) {
             return ResponseEntity.badRequest().body("Weak password.");
         }
-        if (!CredentialsValidator.isOldEnough(user.getBirthday())) {
+        if (!CredsValidator.isOldEnough(user.getBirthday())) {
             return ResponseEntity.badRequest().body("User must be at least 13 years old.");
         }
 
+        System.out.println(user);
         authService.createUser(user);
         return ResponseEntity.ok("User registered successfully.");
     }
@@ -38,6 +42,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserDto user) {
         try {
+            System.out.println("Login payload: " + user);
             String token = authService.authenticateUser(user);
             return ResponseEntity.ok(token);
         } catch (Exception e) {
@@ -50,5 +55,22 @@ public class UserController {
         session.invalidate();
         return "Logged out";
     }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> getCurrentUser(HttpServletRequest request) {
+        String header = request.getHeader("Authorization");
+        if (header == null || !header.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing token");
+        }
+
+        String token = header.substring(7);
+        try {
+            String username = tokenUtils.getTokenUsername(token);
+            return ResponseEntity.ok(username);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
+        }
+    }
+
 }
 

@@ -16,27 +16,31 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-        public void createUser(UserDto dto) {
-            if (userRepository.existsByEmail(dto.getEmail())) {
-                throw new IllegalArgumentException("Email already in use");
-            }
-
-            User user = new User();
-            user.setUsername(dto.getUsername());
-            user.setEmail(dto.getEmail());
-            user.setPassword(passwordEncoder.encode(dto.getPassword()));
-            user.setBirthday(dto.getBirthday());
-            userRepository.save(user);
+    public void createUser(UserDto dto) {
+        if (userRepository.existsByEmail(dto.getEmail())) {
+            throw new IllegalArgumentException("Email already in use");
         }
 
-        public User login(UserLoginDto dto) {
-            return userRepository.findByEmailOrUsername(dto.getUsernameOrEmail(), dto.getUsernameOrEmail())
-                    .filter(user -> passwordEncoder.matches(dto.getPassword(), user.getPassword()))
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid credentials"));
+        if (userRepository.existsByUsername(dto.getUsername())) {
+            throw new IllegalArgumentException("Username already in use");
         }
 
-        public Optional<User> findByUsernameOrEmail(String input) {
-            return userRepository.findByEmailOrUsername(input, input);
-        }
+        User user = new User();
+        user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setBirthday(dto.getBirthday());
+        userRepository.save(user);
+    }
+
+    public User login(UserLoginDto dto) {
+        return userRepository.findByEmailOrUsername(dto.getUsernameOrEmail(), dto.getUsernameOrEmail())
+                .filter(user -> passwordEncoder.matches(dto.getPassword(), user.getPassword()))
+                .orElseThrow(() -> new IllegalArgumentException("Invalid credentials"));
+    }
+
+    public Optional<User> findByUsernameOrEmail(String input) {
+        return userRepository.findByEmailOrUsername(input, input);
+    }
 
 }

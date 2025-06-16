@@ -1,5 +1,24 @@
 let currentPage = 0;
 
+async function authFetch(url, options = {}) {
+  const token = localStorage.getItem("token");
+  options.headers = options.headers || {};
+  if (token) {
+    options.headers["Authorization"] = "Bearer " + token;
+  }
+
+  const res = await fetch(url, options);
+
+  if (res.status === 401 || res.status === 403) {
+    const popup = document.getElementById("auth-popup");
+    if (popup) popup.style.display = "flex";
+    return Promise.reject("Unauthorized");
+  }
+
+  return res;
+}
+
+
 function openModal() {
     document.getElementById("modal").style.display = "flex";
 }
@@ -7,6 +26,25 @@ function openModal() {
 function closeModal() {
     document.getElementById("modal").style.display = "none";
 }
+
+function openSection(section) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        const popup = document.getElementById("auth-popup");
+        if (popup) popup.style.display = "flex";
+        return;
+    }
+
+    window.location.href = `/${section}`;
+}
+
+
+document.addEventListener("click", (e) => {
+  const popup = document.getElementById("auth-popup");
+  if (popup && e.target === popup) {
+    popup.style.display = "none";
+  }
+});
 
 document.getElementById("addPetForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -32,7 +70,7 @@ document.getElementById("addPetForm").addEventListener("submit", async (e) => {
 
     errorMsg.style.display = "none";
 
-    await fetch("/api/pets", {
+    await authFetch("/api/pets", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
@@ -62,7 +100,7 @@ async function loadPage(offset) {
         if (currentPage < 0) currentPage = 0;
     }
 
-    const res = await fetch(`/api/pets?page=${currentPage}&sort=${sortValue}`);
+    const res = await authFetch(`/api/pets?page=${currentPage}&sort=${sortValue}`);
     const pets = await res.json();
 
     const list = document.getElementById("petList");

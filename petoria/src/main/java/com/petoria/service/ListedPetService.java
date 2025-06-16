@@ -71,7 +71,6 @@ public class ListedPetService {
         pet.setSubmissionTime(LocalDateTime.now());
         pet.setUserId(userId);
         repository.save(pet);
-//        return dto;
         return repository.save(pet);
     }
 

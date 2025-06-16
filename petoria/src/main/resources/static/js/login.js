@@ -1,22 +1,26 @@
-document.getElementById("loginForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const form = e.target;
+document.querySelector("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    const data = {
-        usernameOrEmail: form.usernameOrEmail.value,
-        password: form.password.value
-    };
+  const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
 
-    const res = await fetch("/api/users/login", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-    });
+  const res = await fetch("/api/users/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+    usernameOrEmail: usernameInput.value,
+    password: passwordInput.value
+    })
+  });
 
-    if (res.ok) {
-        alert("Logged in successfully!");
-        window.location.href = "/"; // or home
-    } else {
-        alert("Invalid credentials.");
-    }
+  if (res.ok) {
+    const token = await res.text();
+    alert("Login successful!");
+    localStorage.setItem("token", token);
+    window.location.href = "/";
+
+  } else {
+    const error = await res.text();
+    alert("Login failed: " + error);
+  }
 });

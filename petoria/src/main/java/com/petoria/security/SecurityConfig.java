@@ -1,5 +1,6 @@
 package com.petoria.security;
 
+import com.petoria.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,18 +11,30 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @RequiredArgsConstructor
-public class WebSecurityConfig {
+public class SecurityConfig {
 
-    private final TokenAuthenticationFilter tokenAuthenticationFilter;
+    private final TokenAuthFilter tokenAuthFilter;
+    private final CustomUserDetailsService userDetailsService;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class).build();
+        AuthenticationManagerBuilder authBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        authBuilder
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
+        return authBuilder.build();
     }
 
     @Bean
@@ -34,11 +47,13 @@ public class WebSecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .logout(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(tokenAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/signup", "/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/pet/**", "/js/**", "/css/**", "/images/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/users/register", "/users/login").permitAll()
+                        .requestMatchers(
+                                "/", "/signup", "/login", "/getapet",
+                                "/css/**", "/js/**", "/img/**", "/favicon.ico"
+                        ).permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/users/signup", "/api/users/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .build();

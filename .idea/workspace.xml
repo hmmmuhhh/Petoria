@@ -5,7 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24118ac2-078d-4de2-9d1e-f58392c4c6f9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/security/CustomUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/css/popup.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/css/signup.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/DemoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/config/AppConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/ExceptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/ExceptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/GetAPetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/GetAPetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/repository/ListedPetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/repository/ListedPetRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/security/TokenAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/security/TokenAuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/ListedPetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/ListedPetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/util/CredentialsValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/util/CredsValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/get-a-pet.js" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/get-a-pet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/get-a-pet.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/get-a-pet.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/signup.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +88,15 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Desktop\Petoria\petoria\src\main\resources\static\css" />
       <recent name="C:\Users\Admin\Desktop\Petoria\petoria\src\main\resources\static\img" />
       <recent name="C:\Users\Admin\Desktop\Petoria\petoria\src\main\resources\static" />
       <recent name="C:\Users\Admin\Desktop\Petoria\petoria\src\main\resources" />
@@ -75,7 +110,7 @@
         <env name="DB_PASS" value="314159265" />
         <env name="JJWT_SECRET" value="3141592653589793238462643383279502" />
       </envs>
-      <option name="MAIN_CLASS_NAME" value="com.example.demo.DemoApplication" />
+      <option name="MAIN_CLASS_NAME" value="com.petoria.DemoApplication" />
       <module name="petoria.main" />
       <method v="2">
         <option name="Make" enabled="true" />

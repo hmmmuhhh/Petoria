@@ -9,14 +9,15 @@ import java.time.Period;
 import java.util.regex.Pattern;
 
 @UtilityClass
-public class CredentialsValidator {
+public class CredsValidator {
 
     private static final EmailValidator EMAIL_VALIDATOR = EmailValidator.getInstance();
 
     private static final Pattern USERNAME_PATTERN = Pattern.compile("^[\\w.@$!%*#?&-]{5,20}$");
 
-    private static final Pattern PASSWORD_PATTERN =
-            Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*#?&^_-]).{5,}$");
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile(
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\w\\s]).{5,}$"
+    );
 
     public boolean isValidUsername(String username) {
         return username != null && USERNAME_PATTERN.matcher(username).matches();

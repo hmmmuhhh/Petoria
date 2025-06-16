@@ -28,7 +28,6 @@ public class GetAPetController {
         if (userId == null) {
             throw new IllegalStateException("User must be logged in to add pets.");
         }
-//        return ResponseEntity.ok(service.addPet(dto));
         return service.addPet(dto, Long.parseLong(userId.toString()));
     }
 
