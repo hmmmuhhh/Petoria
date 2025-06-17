@@ -14,7 +14,7 @@
 </header>
 
 <div class="sort-container">
-    <label for="sortFilter"></label><select id="sortFilter" onchange="applySort()">
+    <label for="sortFilter">Sort by: </label><select id="sortFilter" onchange="applySort()">
     <option value="newest">Newest</option>
     <option value="priceAsc">Price: Low to High</option>
     <option value="priceDesc">Price: High to Low</option>
@@ -25,14 +25,16 @@
 </select>
 </div>
 
+<p class="popup-text"></p>
+
 <div class="pagination">
     <button onclick="loadPage(-1)">Previous</button>
     <button onclick="loadPage(1)">Next</button>
 </div>
 
-<div id="modal" class="modal">
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-content">
-        <h2>Add a Pet</h2>
+        <h2 id="modal-title">Add a Pet</h2>
         <form id="addPetForm">
             <label>
                 <input type="text" name="name" placeholder="Name" required>
@@ -62,7 +64,10 @@
     </div>
 </div>
 
-<div id="petList" class="pet-grid"></div>
+<main>
+    <section id="petList" class="pet-grid"></section>
+</main>
+<!--<div id="petList" class="pet-grid"></div>-->
 
 <div class="pagination bottom">
     <button onclick="loadPage(-1)">Previous</button>

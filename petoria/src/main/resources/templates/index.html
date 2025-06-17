@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Petoria - Home</title>
+    <link rel="icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -11,53 +12,109 @@
 </head>
 <body>
 
-<div class="auth-buttons">
-    <button onclick="location.href='/signup'">Sign Up</button>
-    <button onclick="location.href='/login'">Log In</button>
-</div>
-
 <div class="top-bar">
-    <span id="username-display"></span>
-    <button onclick="logout()" class="logout-btn" id="logoutBtn">Log out</button>
+    <div class="auth-buttons" id="authButtons">
+        <button onclick="location.href='/signup'" class="auth-btn">Sign Up</button>
+        <button onclick="location.href='/login'" class="auth-btn">Log In</button>
+    </div>
 
+    <div class="user-info" id="userInfo">
+        <span id="username-display"></span>
+        <button onclick="logout()" id="logoutBtn" class="auth-btn">Logout</button>
+    </div>
 </div>
 
-<div id="auth-popup" style="display: none;" class="popup-overlay">
+<div id="auth-popup" class="popup-overlay">
     <div class="popup-content">
-        <p>To access this section, please log in or sign up.</p>
+        <button class="close-popup" onclick="closePopup()">❌</button>
+        <p class="popup-text">You need to log in to access this section.</p>
         <a href="/login" class="btn">Log in</a>
         <a href="/signup" class="btn">Sign up</a>
     </div>
 </div>
 
-
 <div class="sidebar">
-    <ul>
+    <ul class="nav-links">
         <li><a href="/"><i class="fas fa-home"></i><span>Home</span></a></li>
-        <li><a href="#" class="nav-link" data-section="getapet"><i class="fas fa-dog"></i><span>Get a Pet</span></a></li>
-        <li><a href="/lost-and-found"><i class="fas fa-search"></i><span>Lost & Found</span></a></li>
-        <li><a href="#"><i class="fas fa-stethoscope"></i><span>Vets & Grooming</span></a></li>
-        <li><a href="#"><i class="fas fa-question-circle"></i><span>Q&A</span></a></li>
-        <li><a href="#"><i class="fas fa-blog"></i><span>Blog</span></a></li>
+        <li><a href="#" class="nav-link" data-section="get-a-pet"><i class="fas fa-dog"></i><span>Get a Pet</span></a></li>
+        <li><a href="#" class="nav-link" data-section="lost-and-found"><i class="fas fa-search"></i><span>Lost & Found</span></a></li>
+        <li><a href="#" class="nav-link" data-section="services"><i class="fas fa-briefcase-medical"></i><span>Services</span></a></li>
+        <li><a href="#" class="nav-link" data-section="blog"><i class="fas fa-blog"></i><span>Blog</span></a></li>
+        <li><a href="#" class="nav-link" data-section="message"><i class="fas fa-envelope"></i><span>Messages</span></a></li>
+        <li><a href="#" class="nav-link" data-section="profile"><i class="fas fa-user"></i><span>Profile</span></a></li>
+        <li><a href="#" class="nav-link" data-section="settings"><i class="fas fa-cog"></i><span>Settings</span></a></li>
     </ul>
 </div>
 
+
 <div class="main-content">
+
     <header>
         <h1>Petoria</h1>
-        <p class="slogan">Sniff. Click. Connect</p>
+        <p class="slogan">Sniff. Click. Connect.</p>
     </header>
+
     <section class="intro">
         <p>Welcome to Petoria — your one-stop hub for adopting, caring, and reuniting with pets. (yes the css is from
             chatgpt, I'll actually make it pretty eventually.)</p>
     </section>
+
+    <section class="section-preview">
+        <div class="preview-card">
+            <h2>Get a Pet</h2>
+            <p>Browse pets looking for a new home.</p>
+            <a href="/get-a-pet" class="nav-link" data-section="get-a-pet">Go to Section &rarr;</a>
+        </div>
+    </section>
+
     <section class="section-preview">
         <div class="preview-card">
             <h2>Lost & Found</h2>
             <p>Report or find lost pets in your area.</p>
-            <a href="/lost-and-found">Go to Section &rarr;</a>
+            <a href="/lost-and-found" class="nav-link" data-section="lost-and-found">Go to Section &rarr;</a>
         </div>
     </section>
+
+    <section class="section-preview">
+        <div class="preview-card">
+            <h2>Services</h2>
+            <p>Find nearby vets, grooming salons, and pet supply stores.</p>
+            <a href="/services" class="nav-link" data-section="services">Go to Section &rarr;</a>
+        </div>
+    </section>
+
+    <section class="section-preview">
+        <div class="preview-card">
+            <h2>Blog</h2>
+            <p>Read and share stories about pets, care tips, and more.</p>
+            <a href="/blog" class="nav-link" data-section="blog">Go to Section &rarr;</a>
+        </div>
+    </section>
+
+    <section class="section-preview">
+        <div class="preview-card">
+            <h2>Messages</h2>
+            <p>Get in touch with other users and animal lovers.</p>
+            <a href="/message" class="nav-link" data-section="message">Go to Section &rarr;</a>
+        </div>
+    </section>
+
+    <section class="section-preview">
+        <div class="preview-card">
+            <h2>Profile</h2>
+            <p>View and manage your personal information.</p>
+            <a href="/profile" class="nav-link" data-section="profile">Go to Section &rarr;</a>
+        </div>
+    </section>
+
+    <section class="section-preview">
+        <div class="preview-card">
+            <h2>Settings</h2>
+            <p>Customize your experience and preferences.</p>
+            <a href="/settings" class="nav-link" data-section="settings">Go to Section &rarr;</a>
+        </div>
+    </section>
+
 </div>
 
 </body>

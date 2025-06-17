@@ -19,14 +19,39 @@ public class ViewController {
         return "index";
     }
 
-    @GetMapping("/getapet")
+    @GetMapping("/get-a-pet")
     public String getAPetPage() {
         return "get-a-pet";
     }
 
-    @GetMapping("/pet/{id}")
-    public String petDetailPage() {
-        return "pet-detail";
+    @GetMapping("/lost-and-found")
+    public String lostAndFoundPage() {
+        return "lost-and-found";
+    }
+
+    @GetMapping("/blog")
+    public String blogPage() {
+        return "blog";
+    }
+
+    @GetMapping("/services")
+    public String servicePage() {
+        return "services";
+    }
+
+    @GetMapping("/message")
+    public String messagePage() {
+        return "message";
+    }
+
+    @GetMapping("/profile")
+    public String profilePage() {
+        return "profile";
+    }
+
+    @GetMapping("/settings")
+    public String settingsPage() {
+        return "settings";
     }
 
     @GetMapping("/signup")
@@ -37,5 +62,10 @@ public class ViewController {
     @GetMapping("/login")
     public String loginPage() {
         return "login";
+    }
+
+    @GetMapping("/pet/{id}")
+    public String petDetailPage() {
+        return "pet-detail";
     }
 }

@@ -21,17 +21,10 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody UserDto user) {
-        if (!CredsValidator.isValidUsername(user.getUsername())) {
-            return ResponseEntity.badRequest().body("Invalid username.");
-        }
-        if (!CredsValidator.isValidEmail(user.getEmail())) {
-            return ResponseEntity.badRequest().body("Invalid email.");
-        }
-        if (!CredsValidator.isValidPassword(user.getPassword())) {
-            return ResponseEntity.badRequest().body("Weak password.");
-        }
-        if (!CredsValidator.isOldEnough(user.getBirthday())) {
-            return ResponseEntity.badRequest().body("User must be at least 13 years old.");
+
+        String error = CredsValidator.validateAll(user);
+        if (error != null) {
+            return ResponseEntity.badRequest().body(error);
         }
 
         System.out.println(user);
@@ -42,7 +35,6 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserDto user) {
         try {
-            System.out.println("Login payload: " + user);
             String token = authService.authenticateUser(user);
             return ResponseEntity.ok(token);
         } catch (Exception e) {

@@ -3,6 +3,7 @@ package com.petoria.service;
 
 import com.petoria.dto.ListedPetDto;
 import com.petoria.model.ListedPet;
+import com.petoria.model.PetType;
 import com.petoria.repository.ListedPetRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -27,24 +28,14 @@ public class ListedPetService {
 
     public List<ListedPetDto> getAllPets(int page, String sort) {
         Pageable pageable;
-        switch (sort) {
-            case "priceAsc":
-                pageable = PageRequest.of(page, 9, Sort.by("price").ascending());
-                break;
-            case "priceDesc":
-                pageable = PageRequest.of(page, 9, Sort.by("price").descending());
-                break;
-            case "dog":
-            case "cat":
-            case "bird":
-            case "other":
-                pageable = PageRequest.of(page, 9, Sort.by("submissionTime").descending());
-                return repository.findByTypeIgnoreCase(sort, pageable)
-                        .stream().map(this::mapToDto).toList();
-            default:
-                pageable = PageRequest.of(page, 9, Sort.by("submissionTime").descending());
+
+        if (PetType.isValid(sort)) {
+            pageable = PageRequest.of(page, 9, Sort.by("submissionTime").descending());
+            return repository.findByTypeIgnoreCase(sort, pageable)
+                    .stream().map(this::mapToDto).toList();
         }
 
+        pageable = PageRequest.of(page, 9, Sort.by("submissionTime").descending());
         return repository.findAll(pageable)
                 .stream().map(this::mapToDto).toList();
     }
@@ -56,8 +47,8 @@ public class ListedPetService {
         dto.setPrice(pet.getPrice());
         dto.setDescription(pet.getDescription());
         dto.setPhotoUrl(pet.getPhotoUrl());
-        dto.setType(pet.getType());
-//        dto.setSubmissionTime(pet.getSubmissionTime());
+        dto.setType(String.valueOf(pet.getType()));
+        dto.setSubmissionTime(pet.getSubmissionTime());
         return dto;
     }
 
@@ -67,10 +58,9 @@ public class ListedPetService {
         pet.setPrice(dto.getPrice());
         pet.setDescription(dto.getDescription());
         pet.setPhotoUrl(dto.getPhotoUrl());
-        pet.setType(dto.getType());
+        pet.setType(PetType.fromString(dto.getType()));
         pet.setSubmissionTime(LocalDateTime.now());
         pet.setUserId(userId);
-        repository.save(pet);
         return repository.save(pet);
     }
 

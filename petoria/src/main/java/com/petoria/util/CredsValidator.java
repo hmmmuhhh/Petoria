@@ -3,6 +3,7 @@ package com.petoria.util;
 import com.petoria.dto.UserDto;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -40,5 +41,13 @@ public class CredsValidator {
                 isValidEmail(user.getEmail()) &&
                 isValidPassword(user.getPassword()) &&
                 isOldEnough(user.getBirthday());
+    }
+
+    public static String validateAll(UserDto user) {
+        if (!isValidUsername(user.getUsername())) return "Invalid username.";
+        if (!isValidEmail(user.getEmail())) return "Invalid email.";
+        if (!isValidPassword(user.getPassword())) return "Weak password.";
+        if (!isOldEnough(user.getBirthday())) return "User must be at least 13 years old.";
+        return null;
     }
 }

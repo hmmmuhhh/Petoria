@@ -1,5 +1,7 @@
 package com.petoria.security;
 
+import com.petoria.repository.UserRepository;
+import com.petoria.service.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,6 +25,7 @@ public class TokenAuthFilter extends OncePerRequestFilter {
     private static final String TOKEN_HEADER = "Authorization";
 
     private final TokenUtils tokenUtils;
+    private final CustomUserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
@@ -40,8 +43,8 @@ public class TokenAuthFilter extends OncePerRequestFilter {
 
         try {
             String username = tokenUtils.getTokenUsername(token);
-
-            var auth = new UsernamePasswordAuthenticationToken(username, null, Collections.emptyList());
+            var userDetails = userDetailsService.loadUserByUsername(username);
+            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(auth);
 
         } catch (Exception e) {

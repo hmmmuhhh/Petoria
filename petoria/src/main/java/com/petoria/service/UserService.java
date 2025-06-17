@@ -17,14 +17,6 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public void createUser(UserDto dto) {
-        if (userRepository.existsByEmail(dto.getEmail())) {
-            throw new IllegalArgumentException("Email already in use");
-        }
-
-        if (userRepository.existsByUsername(dto.getUsername())) {
-            throw new IllegalArgumentException("Username already in use");
-        }
-
         User user = new User();
         user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());

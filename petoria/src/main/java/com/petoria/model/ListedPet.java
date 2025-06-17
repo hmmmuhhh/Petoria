@@ -18,8 +18,8 @@ public class ListedPet {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "type")
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private PetType type;
 
     private BigDecimal price;
 
@@ -39,7 +39,7 @@ public class ListedPet {
         this.name = name;
     }
 
-    public void setType(String type) {
+    public void setType(PetType type) {
         this.type = type;
     }
 

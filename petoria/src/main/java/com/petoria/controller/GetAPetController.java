@@ -2,11 +2,16 @@ package com.petoria.controller;
 
 import com.petoria.dto.ListedPetDto;
 import com.petoria.model.ListedPet;
+import com.petoria.security.CustomUserDetails;
 import com.petoria.service.ListedPetService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -23,12 +28,20 @@ public class GetAPetController {
     }
 
     @PostMapping
-    public ListedPet addPet(@RequestBody ListedPetDto dto, HttpSession session) {
-        Object userId = session.getAttribute("userId");
-        if (userId == null) {
-            throw new IllegalStateException("User must be logged in to add pets.");
+    public ListedPet addPet(@RequestBody ListedPetDto dto) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth == null || !auth.isAuthenticated() || auth.getPrincipal().equals("anonymousUser")) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You must be logged in to add a pet.");
         }
-        return service.addPet(dto, Long.parseLong(userId.toString()));
+
+        CustomUserDetails user = (CustomUserDetails) auth.getPrincipal();
+        Long userId = user.getId();
+
+        System.out.println("AUTH: " + SecurityContextHolder.getContext().getAuthentication());
+        System.out.println("TOKEN PRINCIPAL: " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
+        return service.addPet(dto, userId);
     }
 
     @GetMapping

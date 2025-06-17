@@ -1,5 +1,15 @@
 let currentPage = 0;
 
+function renderPetCard(pet) {
+  return `
+    <h3>${pet.name}</h3>
+    <img src="${pet.photoUrl}" alt="Photo of ${pet.name}">
+    <p>${pet.description}</p>
+    <p><strong>Price:</strong> $${pet.price ?? 'Free'}</p>
+    <button onclick="location.href='/pet/${pet.id}'">View</button>
+  `;
+}
+
 async function authFetch(url, options = {}) {
   const token = localStorage.getItem("token");
   options.headers = options.headers || {};
@@ -10,13 +20,20 @@ async function authFetch(url, options = {}) {
   const res = await fetch(url, options);
 
   if (res.status === 401 || res.status === 403) {
-    const popup = document.getElementById("auth-popup");
-    if (popup) popup.style.display = "flex";
-    return Promise.reject("Unauthorized");
+    localStorage.removeItem("token");
+    window.location.href = "/";
+
+    setTimeout(() => {
+      const popup = document.getElementById("auth-popup");
+      if (popup) popup.style.display = "flex";
+    }, 300);
+
+    throw new Error("Unauthorized");
   }
 
   return res;
 }
+
 
 
 function openModal() {
@@ -24,7 +41,9 @@ function openModal() {
 }
 
 function closeModal() {
-    document.getElementById("modal").style.display = "none";
+  document.getElementById("modal").style.display = "none";
+  document.getElementById("addPetForm").reset();
+  document.getElementById("urlError").style.display = "none";
 }
 
 function openSection(section) {
@@ -69,11 +88,10 @@ document.getElementById("addPetForm").addEventListener("submit", async (e) => {
     }
 
     errorMsg.style.display = "none";
-
     await authFetch("/api/pets", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
     });
 
     form.reset();
@@ -109,19 +127,14 @@ async function loadPage(offset) {
     if (pets.length === 0 && currentPage > 0) {
         currentPage = 0;
         loadPage(0);
+        list.innerHTML = "<p>No pets found.</p>";
         return;
     }
 
     pets.forEach(p => {
         const card = document.createElement("div");
         card.className = "pet-card";
-        card.innerHTML = `
-            <h3>${p.name}</h3>
-            <img src="${p.photoUrl}" alt="Pet Photo">
-            <p>${p.description}</p>
-            <p><strong>Price:</strong> $${p.price ?? 'Free'}</p>
-            <button onclick="location.href='/pet/${p.id}'">View</button>
-        `;
+        card.innerHTML = renderPetCard(p);
         list.appendChild(card);
     });
 }

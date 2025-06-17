@@ -50,8 +50,26 @@ document.getElementById("signupForm").addEventListener("submit", async function 
     document.getElementById("signupFailError").textContent = "Sign-up failed. Please try again.";
 
   } else {
-    alert("Signup successful! You can now log in.");
-    window.location.href = "/login";
+  showFlash("Signup successful!");
+  setTimeout(() => window.location.href = "/login", 1500);
   }
 
 });
+
+function togglePassword(id, button) {
+const input = document.getElementById(id);
+const isVisible = input.type === "text";
+input.type = isVisible ? "password" : "text";
+button.textContent = isVisible ? "👁️" : "🙈";
+}
+
+function showFlash(message, type = "success") {
+  const box = document.getElementById("flashMessage");
+  box.textContent = message;
+  box.className = `flash-message ${type}`;
+  box.style.display = "block";
+  setTimeout(() => {
+    box.style.display = "none";
+  }, 1400);
+}
+

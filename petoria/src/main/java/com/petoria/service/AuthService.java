@@ -22,18 +22,18 @@ public class AuthService {
         if (!CredsValidator.validate(user)) {
             throw new IllegalArgumentException("Invalid user credentials.");
         }
+
+        if (userService.findByUsernameOrEmail(user.getUsername()).isPresent()) {
+            throw new IllegalArgumentException("Username or email already in use.");
+        }
         userService.createUser(user);
     }
 
     public String authenticateUser(UserDto user) {
         var login = user.getUsernameOrEmail();
-        System.out.println("Attempting login for: " + login);
-
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(login, user.getPassword())
         );
-
-        System.out.println("Authenticating user: " + login + " with password: " + user.getPassword());
         String username = authentication.getName();
         return tokenUtils.generateToken(username);
     }
