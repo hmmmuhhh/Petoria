@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class ListedPetDto {
+public class PetDto {
     private Long id;
     private String name;
     private BigDecimal price;

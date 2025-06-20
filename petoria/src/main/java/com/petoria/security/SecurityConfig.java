@@ -54,9 +54,11 @@ public class SecurityConfig {
                                 "/get-a-pet", "/lost-and-found", "/blog", "/services", "/message", "/profile", "/settings",
                                 "/css/**", "/js/**", "/img/**", "/favicon.ico"
                         ).permitAll()
+
                         .requestMatchers(HttpMethod.POST, "/api/users/signup", "/api/users/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/pets").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/pets/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/pets", "/api/services").authenticated()
+
+                        .requestMatchers(HttpMethod.GET, "/api/pets/**", "/api/services/**").authenticated()
                         .requestMatchers(HttpMethod.GET, "/pet/**").permitAll()
                         .anyRequest().authenticated()
                 )

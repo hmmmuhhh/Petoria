@@ -9,28 +9,32 @@
 <body>
 <header>
     <h1>Get a Pet</h1>
-    <button onclick="location.href='/'" class="back-button">Back to Home</button>
-    <button onclick="openModal()" class="add-button">+ Add Pet</button>
 </header>
 
-<div class="sort-container">
-    <label for="sortFilter">Sort by: </label><select id="sortFilter" onchange="applySort()">
-    <option value="newest">Newest</option>
-    <option value="priceAsc">Price: Low to High</option>
-    <option value="priceDesc">Price: High to Low</option>
-    <option value="dog">Dog</option>
-    <option value="cat">Cat</option>
-    <option value="bird">Bird</option>
-    <option value="other">Other</option>
-</select>
-</div>
+<div class="top-bar">
+    <button onclick="location.href='/'" class="back-button">Back to Home</button>
 
+    <div class="sort-container">
+        <label for="sortFilter"><strong>Sort by:</strong></label>
+        <select id="sortFilter" onchange="applySort()">
+            <option value="newest">Newest</option>
+            <option value="priceAsc">Price: Low to High</option>
+            <option value="priceDesc">Price: High to Low</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="bird">Bird</option>
+            <option value="reptile">Reptile</option>
+            <option value="fish">Fish</option>
+            <option value="farm">Farm Animal</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+
+    <button onclick="openModal()" class="add-button">+ Add Pet</button>
+</div>
 <p class="popup-text"></p>
 
-<div class="pagination">
-    <button onclick="loadPage(-1)">Previous</button>
-    <button onclick="loadPage(1)">Next</button>
-</div>
+<div id="pagination-top" class="pagination"></div>
 
 <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-content">
@@ -45,6 +49,9 @@
                     <option value="dog">Dog</option>
                     <option value="cat">Cat</option>
                     <option value="bird">Bird</option>
+                    <option value="reptile">Reptile</option>
+                    <option value="fish">Fish</option>
+                    <option value="farm">Farm Animal</option>
                     <option value="other">Other</option>
                 </select>
             </label>
@@ -67,11 +74,8 @@
 <main>
     <section id="petList" class="pet-grid"></section>
 </main>
-<!--<div id="petList" class="pet-grid"></div>-->
 
-<div class="pagination bottom">
-    <button onclick="loadPage(-1)">Previous</button>
-    <button onclick="loadPage(1)">Next</button>
-</div>
+<div id="pagination-bottom" class="pagination"></div>
+
 </body>
 </html>

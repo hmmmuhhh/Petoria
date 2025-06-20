@@ -1,0 +1,1 @@
+ALTER TABLE service_providers DROP COLUMN type;

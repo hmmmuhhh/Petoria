@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("petInfo").innerHTML = `
       <h2>${pet.name}</h2>
       <img src="${pet.photoUrl}" alt="${pet.name}">
-      <p>${pet.type}</p>
       <p>${pet.description}</p>
       <p><strong>Price:</strong> $${pet.price ?? 'Free'}</p>
     `;

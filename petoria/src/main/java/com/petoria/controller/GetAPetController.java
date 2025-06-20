@@ -1,11 +1,14 @@
 package com.petoria.controller;
 
-import com.petoria.dto.ListedPetDto;
-import com.petoria.model.ListedPet;
+import com.petoria.dto.PetDto;
+import com.petoria.model.Pet;
 import com.petoria.security.CustomUserDetails;
-import com.petoria.service.ListedPetService;
-import jakarta.servlet.http.HttpSession;
+import com.petoria.service.PetService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -20,15 +23,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GetAPetController {
 
-    private final ListedPetService service;
+    private final PetService service;
 
     @GetMapping("/{id}")
-    public ListedPet getPet(@PathVariable Long id) {
+    public Pet getPet(@PathVariable Long id) {
         return service.getPetById(id);
     }
 
     @PostMapping
-    public ListedPet addPet(@RequestBody ListedPetDto dto) {
+    public Pet addPet(@RequestBody PetDto dto) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if (auth == null || !auth.isAuthenticated() || auth.getPrincipal().equals("anonymousUser")) {
@@ -45,11 +48,10 @@ public class GetAPetController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ListedPetDto>> getAllPets(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "newest") String sort
-    ) {
-        return ResponseEntity.ok(service.getAllPets(page, sort));
+    public Page<PetDto> getAllPets(@RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "newest") String sort) {
+        Pageable pageable = PageRequest.of(page, 9, Sort.by("submissionTime").descending());
+        return service.getAllPetsWithPagination(sort, pageable);
     }
 
 }

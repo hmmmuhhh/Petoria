@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Services</title>
+    <link rel="stylesheet" href="/css/services.css"/>
+    <script src="/js/services.js" defer></script>
 </head>
+<header>
+    <h1>Pet Services</h1>
+</header>
 <body>
-<p>This section is under construction. Please check back later!</p>
-<button onclick="location.href='/'">Return to Home</button>
+
+<div class="top-bar">
+    <button onclick="location.href='/'" class="back-btn">← Back to Home</button>
+
+    <div class="sort-container">
+        <label for="typeFilter"><strong>Sort by:</strong></label>
+        <select id="typeFilter">
+            <option value="">All Types</option>
+            <option value="SHELTER">Shelter</option>
+            <option value="VET">Vet Clinic</option>
+            <option value="GROOMING">Grooming</option>
+            <option value="PET_SHOP">Pet Shop</option>
+            <option value="MARKET">Pet Market</option>
+            <option value="OTHER">Other</option>
+        </select>
+    </div>
+
+    <button id="addOrgBtn" class="add-btn">+ Add Organisation</button>
+</div>
+
+<div id="pagination-top" class="pagination"></div>
+
+<div id="orgModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeOrgModal()">×</span>
+        <h2>Add New Organisation</h2>
+        <form id="addOrgForm">
+            <input type="text" name="name" placeholder="Name" required/>
+            <input type="text" name="logoUrl" placeholder="Logo URL" required/>
+            <input type="text" name="phone" placeholder="Phone Number (optional)"/>
+            <input type="text" name="location" placeholder="Location" required/>
+            <input type="text" name="websiteUrl" placeholder="Website URL" required/>
+            <textarea name="description" placeholder="Description" required></textarea>
+
+            <fieldset>
+                <legend>Types</legend>
+                <label><input type="checkbox" name="types" value="SHELTER"/>Shelter</label>
+                <label><input type="checkbox" name="types" value="VET"/>Vet Clinic</label>
+                <label><input type="checkbox" name="types" value="GROOMING"/>Grooming</label>
+                <label><input type="checkbox" name="types" value="PET_SHOP"/>Pet Shop</label>
+                <label><input type="checkbox" name="types" value="MARKET"/>Pet Market</label>
+                <label><input type="checkbox" name="types" value="OTHER"/>Other</label>
+            </fieldset>
+
+            <button type="submit">Submit</button>
+            <button type="button" onclick="closeOrgModal()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<main>
+    <div id="orgGrid" class="grid-container"></div>
+</main>
+
+<div id="pagination-bottom" class="pagination"></div>
 </body>
 </html>

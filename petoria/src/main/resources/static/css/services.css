@@ -19,35 +19,24 @@ header {
     gap: 1rem;
 }
 
-header h1 {
-    flex: 1 0 100%;
-    margin: 10px 0;
-}
-
-.back-button, .add-button {
+.back-btn, .add-btn {
     background-color: #4CAF50;
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 10px;
 }
 
-.pagination {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.pet-grid {
+.grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
 }
 
-.pet-card {
+.org-card {
     background: white;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -55,11 +44,39 @@ header h1 {
     text-align: center;
 }
 
-.pet-card img {
+.org-card img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
     border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.org-card .types {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0;
+}
+
+.org-card .type-badge {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+.org-card .website-btn {
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .modal {
@@ -72,6 +89,7 @@ header h1 {
     display: none;
     justify-content: center;
     align-items: center;
+    z-index: 999;
 }
 
 .modal-content {
@@ -81,6 +99,7 @@ header h1 {
     width: 400px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     text-align: center;
+    position: relative;
 }
 
 .modal-content input,
@@ -92,28 +111,44 @@ header h1 {
     border-radius: 6px;
 }
 
-#urlError {
-    color: red;
-    display: none;
-    font-size: 0.9em;
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.modal-actions button {
-    width: 48%;
+.modal-content fieldset {
+    margin: 10px 0;
     padding: 10px;
-    border: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: left;
+}
+
+.modal-content legend {
+    font-weight: bold;
+    padding: 0 6px;
+}
+
+.modal-content label {
+    display: inline-block;
+    margin: 5px 10px 5px 0;
+}
+
+.modal-content button {
+    margin-top: 12px;
+    padding: 10px;
     background-color: #4CAF50;
     color: white;
+    font-weight: bold;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
 
 .sort-container {
     display: flex;
@@ -144,14 +179,4 @@ header h1 {
 
 .sort-container select:hover {
     border-color: #4CAF50;
-}
-
-.modal-content select {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1rem;
-    background-color: white;
 }

@@ -1,10 +1,10 @@
 package com.petoria.service;
 
 
-import com.petoria.dto.ListedPetDto;
-import com.petoria.model.ListedPet;
+import com.petoria.dto.PetDto;
+import com.petoria.model.Pet;
 import com.petoria.model.PetType;
-import com.petoria.repository.ListedPetRepository;
+import com.petoria.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.data.domain.Page;
@@ -18,15 +18,21 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ListedPetService {
+public class PetService {
 
-    private final ListedPetRepository repository;
+    private final PetRepository repository;
 
-    public Page<ListedPet> getAllPetsPaged(int page, int size) {
-        return repository.findAllByOrderBySubmissionTimeDesc(PageRequest.of(page, size));
+//    public Page<Pet> getAllPetsPaged(int page, int size) {
+//        return repository.findAllByOrderBySubmissionTimeDesc(PageRequest.of(page, size));
+//    }
+
+    public Page<PetDto> getAllPetsWithPagination(String sort, Pageable pageable) {
+        // Optional: add sort logic here if needed
+        return repository.findAll(pageable)
+                .map(this::mapToDto);
     }
 
-    public List<ListedPetDto> getAllPets(int page, String sort) {
+    public List<PetDto> getAllPets(int page, String sort) {
         Pageable pageable;
 
         if (PetType.isValid(sort)) {
@@ -40,8 +46,8 @@ public class ListedPetService {
                 .stream().map(this::mapToDto).toList();
     }
 
-    private ListedPetDto mapToDto(ListedPet pet) {
-        ListedPetDto dto = new ListedPetDto();
+    private PetDto mapToDto(Pet pet) {
+        PetDto dto = new PetDto();
         dto.setId(pet.getId());
         dto.setName(pet.getName());
         dto.setPrice(pet.getPrice());
@@ -52,8 +58,8 @@ public class ListedPetService {
         return dto;
     }
 
-    public ListedPet addPet(ListedPetDto dto, Long userId) {
-        ListedPet pet = new ListedPet();
+    public Pet addPet(PetDto dto, Long userId) {
+        Pet pet = new Pet();
         pet.setName(dto.getName());
         pet.setPrice(dto.getPrice());
         pet.setDescription(dto.getDescription());
@@ -64,7 +70,7 @@ public class ListedPetService {
         return repository.save(pet);
     }
 
-    public ListedPet getPetById(Long id) {
+    public Pet getPetById(Long id) {
         return repository.findById(id).orElseThrow(() -> new RuntimeException("Pet not found"));
     }
 }

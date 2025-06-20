@@ -1,5 +1,8 @@
 let currentPage = 0;
 
+const paginationTop = document.getElementById("pagination-top");
+const paginationBottom = document.getElementById("pagination-bottom");
+
 function renderPetCard(pet) {
   return `
     <h3>${pet.name}</h3>
@@ -119,23 +122,54 @@ async function loadPage(offset) {
     }
 
     const res = await authFetch(`/api/pets?page=${currentPage}&sort=${sortValue}`);
-    const pets = await res.json();
+    const pageData = await res.json();
 
     const list = document.getElementById("petList");
     list.innerHTML = "";
 
-    if (pets.length === 0 && currentPage > 0) {
+    // 👇 If no pets AND not first page, go back and retry
+    if (pageData.content.length === 0 && currentPage > 0) {
         currentPage = 0;
-        loadPage(0);
+        return loadPage(0);
+    }
+
+    // 👇 If no pets AND first page, show message
+    if (pageData.content.length === 0) {
         list.innerHTML = "<p>No pets found.</p>";
+        renderPagination(0);
         return;
     }
 
-    pets.forEach(p => {
+    pageData.content.forEach(p => {
         const card = document.createElement("div");
         card.className = "pet-card";
         card.innerHTML = renderPetCard(p);
         list.appendChild(card);
+    });
+
+    renderPagination(pageData.totalPages);
+}
+
+
+function renderPagination(totalPages) {
+    const containers = [paginationTop, paginationBottom];
+    containers.forEach(container => container.innerHTML = "");
+
+    if (!totalPages || totalPages <= 1) return;
+
+    containers.forEach(container => {
+        const prevBtn = document.createElement("button");
+        prevBtn.textContent = "← Previous";
+        prevBtn.disabled = currentPage === 0;
+        prevBtn.onclick = () => loadPage(-1);
+
+        const nextBtn = document.createElement("button");
+        nextBtn.textContent = "Next →";
+        nextBtn.disabled = currentPage >= totalPages - 1;
+        nextBtn.onclick = () => loadPage(1);
+
+        container.appendChild(prevBtn);
+        container.appendChild(nextBtn);
     });
 }
 

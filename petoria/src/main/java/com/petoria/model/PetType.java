@@ -1,7 +1,7 @@
 package com.petoria.model;
 
 public enum PetType {
-    DOG, CAT, BIRD, OTHER;
+    DOG, CAT, BIRD, REPTILE, FISH, FARM, OTHER;
 
     public static boolean isValid(String value) {
         for (PetType type : values()) {
