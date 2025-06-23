@@ -29,6 +29,11 @@ public class ViewController {
         return "lost-and-found";
     }
 
+    @GetMapping("/lost-and-found/{id}")
+    public String lostAndFoundDetailPage() {
+        return "lost-and-found-detail";
+    }
+
     @GetMapping("/blog")
     public String blogPage() {
         return "blog";

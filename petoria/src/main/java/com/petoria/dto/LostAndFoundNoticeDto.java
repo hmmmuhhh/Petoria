@@ -1,8 +1,8 @@
 package com.petoria.dto;
 
+import com.petoria.model.NoticeType;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
@@ -10,18 +10,16 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PetDto {
+public class LostAndFoundNoticeDto {
     private Long id;
-    private String name;
-    private BigDecimal price;
+    private String title;
     private String description;
     private String photoUrl;
-    private String type;
-    private Long userId;
+    private String location;
+    private NoticeType type;
     private LocalDateTime submissionTime;
-    private boolean isSold;
-
     private String authorUsername;
     private String authorProfilePicUrl;
-
+    private boolean isFound;
 }
+

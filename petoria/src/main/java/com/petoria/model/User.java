@@ -43,6 +43,10 @@ public class User {
         this.password = password;
     }
 
+    public void setProfilePicUrl(String profilePicUrl) {
+        this.profilePicUrl = profilePicUrl;
+    }
+
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }

@@ -3,6 +3,7 @@ package com.petoria.dto;
 import com.petoria.model.ServiceType;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -11,13 +12,13 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 public class ServiceProviderDto {
-
+    private Long id;
     private String name;
     private String logoUrl;
     private String location;
     private String phone;
     private String websiteUrl;
     private String description;
-    private Set<ServiceType> types;
+    private List<String> types;
 
 }

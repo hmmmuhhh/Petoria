@@ -1,0 +1,2 @@
+ALTER TABLE listed_pets ADD COLUMN is_sold BOOLEAN DEFAULT FALSE;
+ALTER TABLE lost_and_found_notice ADD COLUMN is_found BOOLEAN DEFAULT FALSE;

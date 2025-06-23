@@ -9,5 +9,6 @@ public class UserDto {
     private String email;
     private String usernameOrEmail;
     private String password;
+    private String profile_pic_url;
     private LocalDate birthday;
 }

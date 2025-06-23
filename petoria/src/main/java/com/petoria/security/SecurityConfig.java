@@ -48,20 +48,22 @@ public class SecurityConfig {
                 .logout(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(tokenAuthFilter, UsernamePasswordAuthenticationFilter.class)
+
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/", "/signup", "/login",
-                                "/get-a-pet", "/lost-and-found", "/blog", "/services", "/message", "/profile", "/settings",
-                                "/css/**", "/js/**", "/img/**", "/favicon.ico"
-                        ).permitAll()
+                        .requestMatchers("/", "/signup", "/login").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/img/**", "/favicon.ico").permitAll()
+
+                        .requestMatchers("/get-a-pet/**", "/pet/**", "/lost-and-found/**",
+                                "/blog/**", "/notices/**", "/services", "/message/**", "/profile").permitAll()
 
                         .requestMatchers(HttpMethod.POST, "/api/users/signup", "/api/users/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/pets", "/api/services").authenticated()
 
-                        .requestMatchers(HttpMethod.GET, "/api/pets/**", "/api/services/**").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/pet/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/pets", "/api/services", "/api/notices").authenticated()
+
+                        .requestMatchers(HttpMethod.GET, "/api/services/**", "/api/pet/**", "/api/pets/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/notices/**", "/api/notices/*/comments").authenticated()
+
                         .anyRequest().authenticated()
-                )
-                .build();
+                ) .build();
     }
 }

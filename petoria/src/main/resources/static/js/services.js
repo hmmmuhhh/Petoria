@@ -9,29 +9,6 @@ const paginationBottom = document.getElementById("pagination-bottom");
 const modal = document.getElementById("orgModal");
 const addOrgForm = document.getElementById("addOrgForm");
 
-// ----- AUTH FETCH -----
-async function authFetch(url, options = {}) {
-    const token = localStorage.getItem("token");
-    options.headers = options.headers || {};
-    if (token) {
-        options.headers["Authorization"] = "Bearer " + token;
-    }
-
-    const res = await fetch(url, options);
-
-    if (res.status === 401 || res.status === 403) {
-        localStorage.removeItem("token");
-        window.location.href = "/";
-        setTimeout(() => {
-            const popup = document.getElementById("auth-popup");
-            if (popup) popup.style.display = "flex";
-        }, 300);
-        throw new Error("Unauthorized");
-    }
-
-    return res;
-}
-
 // ----- LOAD PROVIDERS -----
 async function loadPage(page) {
     currentPage = page;
@@ -56,7 +33,7 @@ function renderProviders(providers) {
 
     providers.forEach(p => {
         const card = document.createElement("div");
-        card.className = "org-card";
+        card.className = "card";
         card.innerHTML = `
             <img src="${p.logoUrl}" alt="${p.name}" style="object-fit: contain; background: #f7f7f7;" />
             <h3>${p.name}</h3>
@@ -66,7 +43,7 @@ function renderProviders(providers) {
             <div class="types">
               ${p.types.map(t => `<span class="type-badge">${formatType(t)}</span>`).join(" ")}
             </div>
-            <a href="${p.websiteUrl}" target="_blank" class="website-btn">Visit Website</a>
+            <a href="${p.websiteUrl}" target="_blank" class="view-btn">Visit Website</a>
         `;
         orgGrid.appendChild(card);
     });
@@ -107,6 +84,7 @@ document.getElementById("addOrgBtn").addEventListener("click", () => {
 
 function closeOrgModal() {
     modal.style.display = "none";
+    document.getElementById("urlError").style.display = "none";
     addOrgForm.reset();
 }
 
@@ -114,6 +92,7 @@ function closeOrgModal() {
 addOrgForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const form = e.target;
+    const errorMsg = document.getElementById("urlError");
     const checkboxes = form.querySelectorAll("input[name='types']:checked");
 
     const data = {

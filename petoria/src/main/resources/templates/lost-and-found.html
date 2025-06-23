@@ -3,9 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Lost & Found</title>
+    <link rel="stylesheet" href="/css/base.css"/>
+    <link rel="stylesheet" href="/css/lost-and-found.css">
+    <script src="/js/auth-check.js"></script>
+    <script src="/js/lost-and-found.js"></script>
 </head>
 <body>
-<p>This section is under construction. Please check back later!</p>
-<button onclick="location.href='/'">Return to Home</button>
+<header><h1>Lost & Found Notices</h1></header>
+<div class="top-bar">
+    <button onclick="window.location.href='/'" class="back-btn">← Back to Home</button>
+
+    <select id="typeFilter" class="sort-container">
+        <option value="">All Types</option>
+        <option value="LOST">Lost</option>
+        <option value="FOUND">Found</option>
+    </select>
+
+    <button id="addNoticeBtn" class="add-btn">+ Add Notice</button>
+</div>
+
+<div id="pagination-top" class="pagination"></div>
+
+<div id="noticeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">×</span>
+        <h2>Add New Notice</h2>
+        <form id="addNoticeForm">
+            <input type="text" name="title" placeholder="Title" required/>
+            <input type="text" name="photoUrl" placeholder="Photo URL" required/>
+            <span id="urlError">Please enter a valid image URL</span>
+            <input type="text" name="location" placeholder="Location"/>
+            <textarea name="description" placeholder="Description" required></textarea>
+
+            <fieldset>
+                <legend>Type</legend>
+                <label><input type="radio" name="type" value="LOST" required/> Lost</label>
+                <label><input type="radio" name="type" value="FOUND" required/> Found</label>
+            </fieldset>
+
+            <div class="modal-actions">
+                <button type="submit">Submit</button>
+                <button type="button" onclick="closeModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<main>
+    <div id="noticeGrid" class="grid-container"></div>
+</main>
+
+<div id="pagination-bottom" class="pagination"></div>
 </body>
 </html>

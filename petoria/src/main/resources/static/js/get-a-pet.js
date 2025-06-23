@@ -9,35 +9,9 @@ function renderPetCard(pet) {
     <img src="${pet.photoUrl}" alt="Photo of ${pet.name}">
     <p>${pet.description}</p>
     <p><strong>Price:</strong> $${pet.price ?? 'Free'}</p>
-    <button onclick="location.href='/pet/${pet.id}'">View</button>
+    <button onclick="location.href='/pet/${pet.id}'" class="view-btn">View</button>
   `;
 }
-
-async function authFetch(url, options = {}) {
-  const token = localStorage.getItem("token");
-  options.headers = options.headers || {};
-  if (token) {
-    options.headers["Authorization"] = "Bearer " + token;
-  }
-
-  const res = await fetch(url, options);
-
-  if (res.status === 401 || res.status === 403) {
-    localStorage.removeItem("token");
-    window.location.href = "/";
-
-    setTimeout(() => {
-      const popup = document.getElementById("auth-popup");
-      if (popup) popup.style.display = "flex";
-    }, 300);
-
-    throw new Error("Unauthorized");
-  }
-
-  return res;
-}
-
-
 
 function openModal() {
     document.getElementById("modal").style.display = "flex";
@@ -127,13 +101,11 @@ async function loadPage(offset) {
     const list = document.getElementById("petList");
     list.innerHTML = "";
 
-    // 👇 If no pets AND not first page, go back and retry
     if (pageData.content.length === 0 && currentPage > 0) {
         currentPage = 0;
         return loadPage(0);
     }
 
-    // 👇 If no pets AND first page, show message
     if (pageData.content.length === 0) {
         list.innerHTML = "<p>No pets found.</p>";
         renderPagination(0);
@@ -142,7 +114,7 @@ async function loadPage(offset) {
 
     pageData.content.forEach(p => {
         const card = document.createElement("div");
-        card.className = "pet-card";
+        card.className = "card";
         card.innerHTML = renderPetCard(p);
         list.appendChild(card);
     });

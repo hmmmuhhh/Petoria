@@ -1,28 +1,3 @@
-async function authFetch(url, options = {}) {
-  const token = localStorage.getItem("token");
-  options.headers = options.headers || {};
-  if (token) {
-    options.headers["Authorization"] = "Bearer " + token;
-  }
-
-  const res = await fetch(url, options);
-
-  if (res.status === 401 || res.status === 403) {
-    localStorage.removeItem("token");
-    window.location.href = "/";
-
-    setTimeout(() => {
-      const popup = document.getElementById("auth-popup");
-      if (popup) popup.style.display = "flex";
-    }, 300);
-
-    throw new Error("Unauthorized");
-  }
-
-  return res;
-}
-
-
 document.addEventListener("DOMContentLoaded", async () => {
   const id = window.location.pathname.split("/").pop();
   if (!id || isNaN(id)) {
@@ -32,6 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const res = await authFetch(`/api/pets/${id}`);
+    if (!res.ok) throw new Error("Fetch failed");
     const pet = await res.json();
 
     document.getElementById("petInfo").innerHTML = `
@@ -44,4 +20,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error loading pet:", err);
     document.getElementById("petInfo").innerHTML = "<p style='color:red;'>Pet not found or an error occurred.</p>";
   }
+
 });

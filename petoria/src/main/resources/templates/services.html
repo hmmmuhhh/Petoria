@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Services</title>
+    <link rel="stylesheet" href="/css/base.css"/>
     <link rel="stylesheet" href="/css/services.css"/>
+    <script src="/js/auth-check.js"></script>
     <script src="/js/services.js" defer></script>
 </head>
 <header>
@@ -35,10 +37,11 @@
 <div id="orgModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeOrgModal()">×</span>
-        <h2>Add New Organisation</h2>
+        <h2 id="modal-title">Add New Organisation</h2>
         <form id="addOrgForm">
             <input type="text" name="name" placeholder="Name" required/>
             <input type="text" name="logoUrl" placeholder="Logo URL" required/>
+            <span id="urlError">Please enter a valid Logo URL</span>
             <input type="text" name="phone" placeholder="Phone Number (optional)"/>
             <input type="text" name="location" placeholder="Location" required/>
             <input type="text" name="websiteUrl" placeholder="Website URL" required/>
@@ -54,8 +57,10 @@
                 <label><input type="checkbox" name="types" value="OTHER"/>Other</label>
             </fieldset>
 
-            <button type="submit">Submit</button>
-            <button type="button" onclick="closeOrgModal()">Cancel</button>
+            <div class="modal-actions">
+                <button type="submit">Submit</button>
+                <button type="button" onclick="closeOrgModal()">Cancel</button>
+            </div>
         </form>
     </div>
 </div>

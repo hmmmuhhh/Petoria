@@ -1,14 +1,19 @@
 package com.petoria.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
+import javax.sql.RowSet;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "listed_pets")
 @Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Pet {
 
     @Id
@@ -27,13 +32,17 @@ public class Pet {
     private String description;
 
     @Column(name = "submission_time")
-    private LocalDateTime submissionTime = LocalDateTime.now();
+    private LocalDateTime submissionTime;
 
     @Column(name = "photo_url")
     private String photoUrl;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User creator;
+
+    @Column(name = "is_sold")
+    private boolean isSold;
 
     public void setName(String name) {
         this.name = name;
@@ -59,7 +68,8 @@ public class Pet {
         this.photoUrl = photoUrl;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setSold(boolean sold) {
+        isSold = sold;
     }
+
 }

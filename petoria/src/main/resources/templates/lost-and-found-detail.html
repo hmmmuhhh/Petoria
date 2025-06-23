@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notice Detail</title>
+    <link rel="stylesheet" href="/css/lost-and-found-detail.css">
+    <link rel="stylesheet" href="/css/popup.css">
+    <script src="/js/auth-check.js"></script>
+    <script src="/js/lost-and-found-detail.js"></script>
+</head>
+<body>
+
+<div id="auth-popup" class="popup-overlay">
+    <div class="popup-content">
+        <button class="close-popup" onclick="closePopup()">❌</button>
+        <p class="popup-text">You need to log in to access this section.</p>
+        <a href="/login" class="btn">Log in</a>
+        <a href="/signup" class="btn">Sign up</a>
+    </div>
+</div>
+
+<div class="container">
+    <a href="/lost-and-found" class="back-link">← Back to Notices</a>
+
+    <div id="notice-detail" class="notice-detail"></div>
+
+    <div id="comment-toggle" class="comment-toggle" onclick="toggleComments()">
+        <span>View Comments</span>
+        <i class="fa fa-chevron-down" id="toggle-icon"></i>
+    </div>
+
+    <div id="comments-section" class="comments-section" style="display: none;">
+        <div id="comment-list"></div>
+
+        <form id="comment-form">
+            <textarea name="text" required placeholder="Write your comment..."></textarea>
+            <input type="text" name="imageUrl" placeholder="Optional image URL" />
+            <button type="submit">Post Comment</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

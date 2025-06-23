@@ -1,8 +1,11 @@
 package com.petoria.util;
 
+import com.petoria.model.User;
+import com.petoria.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -48,5 +51,11 @@ public class TokenUtils {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public User extractUser(String token, UserRepository userRepo) {
+        String username = getTokenUsername(token.replace("Bearer ", ""));
+        return userRepo.findByEmailOrUsername(username, username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

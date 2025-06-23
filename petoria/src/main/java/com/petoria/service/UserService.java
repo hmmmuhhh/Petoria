@@ -22,6 +22,7 @@ public class UserService {
         user.setEmail(dto.getEmail());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setBirthday(dto.getBirthday());
+        user.setProfilePicUrl("https://miro.medium.com/v2/resize:fit:720/1*W35QUSvGpcLuxPo3SRTH4w.png");
         userRepository.save(user);
     }
 

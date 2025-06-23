@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Get a Pet</title>
+    <link rel="stylesheet" href="/css/base.css"/>
     <link rel="stylesheet" href="/css/get-a-pet.css">
+    <script src="/js/auth-check.js"></script>
     <script src="/js/get-a-pet.js" defer></script>
 </head>
 <body>
@@ -12,7 +14,7 @@
 </header>
 
 <div class="top-bar">
-    <button onclick="location.href='/'" class="back-button">Back to Home</button>
+    <button onclick="location.href='/'" class="back-btn">Back to Home</button>
 
     <div class="sort-container">
         <label for="sortFilter"><strong>Sort by:</strong></label>
@@ -30,8 +32,9 @@
         </select>
     </div>
 
-    <button onclick="openModal()" class="add-button">+ Add Pet</button>
+    <button onclick="openModal()" class="add-btn">+ Add Pet</button>
 </div>
+
 <p class="popup-text"></p>
 
 <div id="pagination-top" class="pagination"></div>
@@ -72,7 +75,7 @@
 </div>
 
 <main>
-    <section id="petList" class="pet-grid"></section>
+    <section id="petList" class="grid-container"></section>
 </main>
 
 <div id="pagination-bottom" class="pagination"></div>

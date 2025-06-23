@@ -2,6 +2,7 @@ package com.petoria.controller;
 
 import com.petoria.dto.ServiceProviderDto;
 import com.petoria.model.ServiceProvider;
+import com.petoria.model.ServiceType;
 import com.petoria.model.User;
 import com.petoria.security.CustomUserDetails;
 import com.petoria.service.ServiceProviderService;
@@ -13,6 +14,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/api/services")
 @RequiredArgsConstructor
@@ -22,8 +25,10 @@ public class ServiceProviderController {
     User user = new User();
 
     @GetMapping
-    public Page<ServiceProvider> getAll(@RequestParam(required = false) String type,
-                                        @RequestParam(defaultValue = "0") int page) {
+    public Page<ServiceProviderDto> getAll(
+            @RequestParam(required = false) String type,
+            @RequestParam(defaultValue = "0") int page
+    ) {
         return service.getAllProviders(type, PageRequest.of(page, 9));
     }
 
@@ -41,7 +46,9 @@ public class ServiceProviderController {
                 .location(dto.getLocation())
                 .websiteUrl(dto.getWebsiteUrl())
                 .description(dto.getDescription())
-                .types(dto.getTypes())
+                .types(dto.getTypes().stream()
+                        .map(type -> ServiceType.valueOf(type.toUpperCase()))
+                        .collect(Collectors.toSet()))
                 .phone(dto.getPhone())
                 .creator(user)
                 .build();
