@@ -43,7 +43,7 @@ button {
 .password-wrapper input[type="password"],
 .password-wrapper input[type="text"] {
   width: 100%;
-  padding-right: 3rem; /* makes space for the eye button */
+  padding-right: 3rem;
   box-sizing: border-box;
   padding-left: 0.75rem;
   font-size: 1rem;

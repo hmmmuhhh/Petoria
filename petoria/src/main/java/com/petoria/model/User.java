@@ -25,7 +25,7 @@ public class User {
     private LocalDate birthday;
 
     @Column(name = "profile_pic_url")
-    private String profilePicUrl = "https://miro.medium.com/v2/resize:fit:720/1*W35QUSvGpcLuxPo3SRTH4w.png";
+    private String profilePicUrl = "/img/default-pfp-petoria.png";
 
     public void setId(Long id) {
         this.id = id;
@@ -50,4 +50,6 @@ public class User {
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
+
+
 }

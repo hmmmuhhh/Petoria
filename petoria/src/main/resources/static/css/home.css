@@ -29,7 +29,6 @@ header {
   gap: 0.75rem;
 }
 
-/* Unified button style */
 .auth-btn {
   padding: 0.5rem 0.75rem;
   font-weight: bold;
@@ -39,7 +38,6 @@ header {
   font-size: 1em;
 }
 
-/* Green: login/signup */
 #authButtons .auth-btn {
   background-color: #4CAF50;
   color: white;
@@ -49,7 +47,6 @@ header {
   background-color: #45a049;
 }
 
-/* Red: logout */
 #logoutBtn {
   background-color: #f44336;
   color: white;
@@ -59,7 +56,6 @@ header {
   background-color: #d7372a;
 }
 
-/* Preview layout */
 .section-preview {
   display: flex;
   flex-direction: column;
@@ -122,13 +118,13 @@ header {
 .nav-links {
   list-style: none;
   margin: 0;
-  padding: 2rem 0; /* even spacing on top and bottom */
+  padding: 2rem 0;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-  gap: 1.4rem; /* consistent spacing between all icons */
+  gap: 1.4rem;
 }
 
 .nav-links li {

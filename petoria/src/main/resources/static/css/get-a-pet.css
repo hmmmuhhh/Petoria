@@ -1,2 +1,13 @@
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+}
 
-
+.card-header img.profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}

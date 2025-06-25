@@ -56,7 +56,6 @@
     margin-top: 5px;
 }
 
-/* Comment toggle bar */
 .comment-toggle {
     display: flex;
     align-items: center;
@@ -82,7 +81,6 @@
     background: #fafafa;
 }
 
-/* Comment card */
 .comment {
     padding: 12px;
     margin-bottom: 12px;
@@ -115,7 +113,6 @@
     border-radius: 4px;
 }
 
-/* Comment form */
 #comment-form {
     display: flex;
     flex-direction: column;

@@ -1,52 +1,48 @@
 package com.petoria.controller;
 
 import com.petoria.dto.PetDto;
-import com.petoria.model.Pet;
-import com.petoria.model.User;
-import com.petoria.security.CustomUserDetails;
+import com.petoria.dto.PetResponseDto;
 import com.petoria.service.PetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/pets")
 @RequiredArgsConstructor
 public class GetAPetController {
 
-    private final PetService service;
-
-    @GetMapping("/{id}")
-    public ResponseEntity<PetDto> getPet(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getPet(id));
-    }
+    private final PetService petService;
 
     @PostMapping
-    public PetDto addPet(@RequestBody PetDto dto) {
-        User user = getAuthenticatedUser();
-        return service.addPet(dto, user);
+    public ResponseEntity<Void> createPet(@AuthenticationPrincipal UserDetails userDetails,
+                                          @ModelAttribute PetDto dto) throws IOException {
+        petService.createPet(userDetails.getUsername(), dto);
+        return ResponseEntity.ok().build();
     }
-
-    private User getAuthenticatedUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        CustomUserDetails userDetails = (CustomUserDetails) auth.getPrincipal();
-        User user = new User();
-        user.setId(userDetails.getId());
-        return user;
-    }
-
     @GetMapping
-    public Page<PetDto> getAllPets(@RequestParam(defaultValue = "0") int page,
-                                   @RequestParam(defaultValue = "newest") String sort) {
-        Pageable pageable = PageRequest.of(page, 9, Sort.by("submissionTime").descending());
-        return service.getAllPetsWithPagination(sort, pageable);
+    public ResponseEntity<Page<PetResponseDto>> getPets(@AuthenticationPrincipal UserDetails user,
+                                                        @RequestParam(defaultValue = "0") int page) {
+        return ResponseEntity.ok(petService.getAllPets(user.getUsername(), page));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PetResponseDto> getPetById(@PathVariable Long id,
+                                                     @AuthenticationPrincipal UserDetails currentUserDetails) {
+        PetResponseDto pet = petService.getPetById(id, currentUserDetails);
+        return ResponseEntity.ok(pet);
+    }
+
+    @PutMapping("/{id}/mark-sold")
+    public ResponseEntity<Void> markAsSold(@PathVariable Long id, @AuthenticationPrincipal UserDetails user) throws AccessDeniedException {
+        petService.toggleSoldStatus(id, user.getUsername());
+        return ResponseEntity.ok().build();
+    }
 }

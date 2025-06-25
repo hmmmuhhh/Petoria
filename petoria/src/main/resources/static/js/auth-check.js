@@ -22,7 +22,7 @@ async function authFetch(url, options = {}) {
 
     if (res.status === 401 || res.status === 403) {
         showPopup("Login required to access this page.");
-        throw new Error("Unauthorized"); // removed return
+        throw new Error("Unauthorized");
     }
 
     return res;

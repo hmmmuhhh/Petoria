@@ -10,9 +10,28 @@
 <body>
 <main>
     <h1>Pet Info</h1>
-    <div id="petInfo"></div>
+    <div id="petInfo" class="pet-info">
+        <div class="card-header">
+            <img id="posterPic" class="profile-pic" />
+            <strong id="posterName"></strong>
+            <span id="soldLabel" class="label sold" style="display: none;">SOLD</span>
+        </div>
+
+        <div class="carousel-container">
+            <button id="prevBtn" class="carousel-arrow">⟨</button>
+            <img id="carouselImg" src="" alt="Pet image">
+            <button id="nextBtn" class="carousel-arrow">⟩</button>
+        </div>
+
+        <h2 id="petName"></h2>
+        <p id="petDescription"></p>
+        <p><strong>Type:</strong> <span id="petType"></span></p>
+        <p><strong>Price:</strong> $<span id="petPrice"></span></p>
+
+        <button id="buyBtn">Buy</button>
+        <button onclick="location.href='/get-a-pet'">Back</button>
+    </div>
 </main>
-<button disabled title="Coming soon">Buy</button>
-<button onclick="location.href='/get-a-pet'">Back</button>
+
 </body>
 </html>

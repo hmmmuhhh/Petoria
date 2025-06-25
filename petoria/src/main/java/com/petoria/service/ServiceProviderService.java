@@ -19,13 +19,6 @@ public class ServiceProviderService {
 
     private final ServiceProviderRepository repository;
 
-//    public Page<ServiceProvider> getAllProviders(String type, Pageable pageable) {
-//        if (type != null && ServiceType.isValid(type)) {
-//            return repository.findByTypesContaining(ServiceType.fromString(type), pageable);
-//        }
-//        return repository.findAll(pageable);
-//    }
-
     public Page<ServiceProviderDto> getAllProviders(String typeStr, Pageable pageable) {
         if (typeStr != null && !typeStr.isBlank() && ServiceType.isValid(typeStr)) {
             ServiceType type = ServiceType.valueOf(typeStr.toUpperCase());

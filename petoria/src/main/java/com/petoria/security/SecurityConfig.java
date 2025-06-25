@@ -1,6 +1,7 @@
 package com.petoria.security;
 
 import com.petoria.service.CustomUserDetailsService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,19 +50,31 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(tokenAuthFilter, UsernamePasswordAuthenticationFilter.class)
 
+                .exceptionHandling(e -> e
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+                        })
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Forbidden");
+                        })
+                )
+
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/signup", "/login").permitAll()
-                        .requestMatchers("/css/**", "/js/**", "/img/**", "/favicon.ico").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/img/**", "/media/uploads/**", "/favicon.ico").permitAll()
 
                         .requestMatchers("/get-a-pet/**", "/pet/**", "/lost-and-found/**",
                                 "/blog/**", "/notices/**", "/services", "/message/**", "/profile").permitAll()
 
                         .requestMatchers(HttpMethod.POST, "/api/users/signup", "/api/users/login").permitAll()
 
-                        .requestMatchers(HttpMethod.POST, "/api/pets", "/api/services", "/api/notices").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/pets", "/api/services", "/api/notices", "/api/blog").authenticated()
 
-                        .requestMatchers(HttpMethod.GET, "/api/services/**", "/api/pet/**", "/api/pets/**").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/notices/**", "/api/notices/*/comments").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/pets/**", "/api/services/**", "/api/notices/**", "/api/blog/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/pets/**").authenticated()
+
+                        .requestMatchers(HttpMethod.GET, "/api/blog/*/comments").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/blog/*/comments").authenticated()
 
                         .anyRequest().authenticated()
                 ) .build();

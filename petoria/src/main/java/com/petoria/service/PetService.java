@@ -1,97 +1,131 @@
 package com.petoria.service;
-
-
 import com.petoria.dto.PetDto;
+import com.petoria.dto.PetResponseDto;
 import com.petoria.model.Pet;
-import com.petoria.model.PetType;
 import com.petoria.model.User;
 import com.petoria.repository.PetRepository;
+import com.petoria.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class PetService {
+    private final PetRepository petRepository;
+    private final UserRepository userRepository;
 
-    private final PetRepository repository;
+    private final String uploadDir = "uploads/";
 
-    public Page<PetDto> getAllPetsWithPagination(String sort, Pageable pageable) {
-        return repository.findAll(pageable)
-                .map(this::mapToDto);
+    public void createPet(String username, PetDto dto) throws IOException {
+        User user = userRepository.findByEmailOrUsername(username, username).orElseThrow();
+
+        List<String> photoPaths = saveFiles(dto.getPhotos());
+        System.out.println("DTO values: name=" + dto.getName() + ", price=" + dto.getPrice() + ", description=" + dto.getDescription());
+
+        System.out.println("DTO name: " + dto.getName());
+        System.out.println("DTO desc: " + dto.getDescription());
+        System.out.println("DTO price: " + dto.getPrice());
+        System.out.println("DTO type: " + dto.getType());
+
+        Pet pet = new Pet();
+        pet.setName(dto.getName());
+        pet.setType(dto.getType());
+        pet.setDescription(dto.getDescription());
+        pet.setPrice(dto.getPrice());
+        pet.setSold(false);
+        pet.setPhotoPaths(photoPaths);
+        pet.setSubmissionTime(LocalDateTime.now());
+        pet.setUser(user);
+
+
+        petRepository.save(pet);
     }
 
-    public List<PetDto> getAllPets(int page, String sort) {
-        Pageable pageable;
+    public Page<PetResponseDto> getAllPets(String currentUsername, int page) {
+        User currentUser = userRepository.findByEmailOrUsername(currentUsername, currentUsername).orElse(null);
+        Pageable pageable = PageRequest.of(page, 9, Sort.by("id").descending());
 
-        if (PetType.isValid(sort)) {
-            pageable = PageRequest.of(page, 9, Sort.by("submissionTime").descending());
-            return repository.findByTypeIgnoreCase(sort, pageable)
-                    .stream().map(this::mapToDto).toList();
+        return petRepository.findAll(pageable).map(pet -> {
+            User poster = pet.getUser();
+            return new PetResponseDto(
+                    pet.getId(),
+                    pet.getName(),
+                    pet.getType(),
+                    pet.getPrice(),
+                    pet.getDescription(),
+                    pet.getPhotoPaths(),
+                    pet.isSold(),
+                    poster.getUsername(),
+                    poster.getProfilePicUrl(),
+                    currentUser != null && poster.getId().equals(currentUser.getId())
+            );
+        });
+    }
+
+    public PetResponseDto getPetById(Long id, UserDetails currentUserDetails) {
+        Pet pet = petRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pet not found"));
+        User poster = pet.getUser();
+
+        boolean isOwner = false;
+        if (currentUserDetails != null && poster.getUsername().equals(currentUserDetails.getUsername())) {
+            isOwner = true;
         }
 
-        pageable = PageRequest.of(page, 9, Sort.by("submissionTime").descending());
-        return repository.findAll(pageable)
-                .stream().map(this::mapToDto).toList();
+        return new PetResponseDto(
+                pet.getId(),
+                pet.getName(),
+                pet.getType(),
+                pet.getPrice(),
+                pet.getDescription(),
+                pet.getPhotoPaths(),
+                pet.isSold(),
+                poster.getUsername(),
+                poster.getProfilePicUrl(),
+                isOwner
+        );
     }
 
-    private PetDto mapToDto(Pet pet) {
-        return PetDto.builder()
-                .id(pet.getId())
-                .name(pet.getName())
-                .price(pet.getPrice())
-                .description(pet.getDescription())
-                .photoUrl(pet.getPhotoUrl())
-                .isSold(pet.isSold())
-                .type(String.valueOf(pet.getType()))
-                .submissionTime(pet.getSubmissionTime())
-                .authorUsername(pet.getCreator().getUsername())
-                .authorProfilePicUrl(pet.getCreator().getProfilePicUrl())
-                .build();
+    public void toggleSoldStatus(Long petId, String username) throws AccessDeniedException {
+        Pet pet = petRepository.findById(petId).orElseThrow();
+        if (!pet.getUser().getUsername().equals(username)) {
+            throw new AccessDeniedException("Not your listing");
+        }
+        pet.setSold(!pet.isSold());
+        petRepository.save(pet);
     }
 
-    public PetDto addPet(PetDto dto, User user) {
-        Pet pet = Pet.builder()
-                .name(dto.getName())
-                .price(dto.getPrice())
-                .description(dto.getDescription())
-                .photoUrl(dto.getPhotoUrl())
-                .type(PetType.fromString(dto.getType()))
-                .submissionTime(LocalDateTime.now())
-                .creator(user)
-                .build();
+    private List<String> saveFiles(List<MultipartFile> files) throws IOException {
+        List<String> paths = new ArrayList<>();
+        if (files == null) return paths;
 
-        return mapToDto(repository.save(pet));
-    }
-    public PetDto getPet(Long id) {
-        Pet dto = repository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pet not found"));
+        File folder = new File(uploadDir);
+        if (!folder.exists()) {
+            boolean created = folder.mkdirs();
+            if (!created) throw new IOException("Upload folder could not be created");
+        }
 
-        return PetDto.builder()
-                .id(dto.getId())
-                .name(dto.getName())
-                .price(dto.getPrice())
-                .description(dto.getDescription())
-                .photoUrl(dto.getPhotoUrl())
-                .type(String.valueOf(dto.getType()))
-                .submissionTime(LocalDateTime.now())
-                .isSold(dto.isSold())
-                .authorUsername(dto.getCreator().getUsername())
-                .authorProfilePicUrl(dto.getCreator().getProfilePicUrl())
-                .build();
-    }
+        for (MultipartFile file : files) {
+            if (file.isEmpty()) continue;
 
-
-    public Pet getPetById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("Pet not found"));
+            String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            Path filePath = Paths.get(uploadDir + fileName);
+            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            paths.add("/media/uploads/" + fileName);
+        }
+        return paths;
     }
 }

@@ -24,9 +24,9 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "notice_id")
-    private LostAndFoundNotice notice;
+    private Notice notice;
 
-//    @ManyToOne
-//    @JoinColumn(name = "blog_id")
-//    private BlogPost blogPost;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "blog_id")
+    private BlogPost blogPost;
 }

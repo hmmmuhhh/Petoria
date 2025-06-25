@@ -35,8 +35,6 @@
     <button onclick="openModal()" class="add-btn">+ Add Pet</button>
 </div>
 
-<p class="popup-text"></p>
-
 <div id="pagination-top" class="pagination"></div>
 
 <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -64,8 +62,11 @@
             <label>
                 <textarea name="description" placeholder="Description"></textarea>
             </label>
-            <label for="photoUrl"></label><input type="text" name="photoUrl" id="photoUrl" placeholder="Photo URL">
-            <span id="urlError">Please enter a valid image URL</span>
+
+            <label>
+                <input type="file" name="photos" multiple accept="image/*" required />
+            </label>
+            <p id="formError" style="display: none; color: red; text-align: center; margin-top: 10px;"></p>
             <div class="modal-actions">
                 <button type="submit">Submit</button>
                 <button type="button" onclick="closeModal()">Cancel</button>
@@ -79,6 +80,15 @@
 </main>
 
 <div id="pagination-bottom" class="pagination"></div>
+
+<div id="auth-popup" class="popup-overlay">
+    <div class="popup-content">
+        <button class="close-popup" onclick="closePopup()">❌</button>
+        <p class="popup-text">You need to log in to access this section.</p>
+        <a href="/login" class="btn">Log in</a>
+        <a href="/signup" class="btn">Sign up</a>
+    </div>
+</div>
 
 </body>
 </html>

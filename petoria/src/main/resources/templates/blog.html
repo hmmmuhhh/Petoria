@@ -2,10 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Blog</title>
+    <title>Petoria - Blog</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/blog.css">
+    <script src="/js/auth-check.js" defer></script>
+    <script src="/js/blog.js" defer></script>
 </head>
 <body>
-<p>This section is under construction. Please check back later!</p>
-<button onclick="location.href='/'">Return to Home</button>
+<div class="top-bar blog-header">
+    <button onclick="location.href='/'" class="back-btn">Back to Home</button>
+    <h1>🐾 Petoria Community Blog</h1>
+</div>
+
+<div class="container" id="blog-container">
+    <div id="post-list" class="scrollable-posts">
+        <!-- posts go here -->
+    </div>
+</div>
+
+<div id="post-creator" class="create-post fixed-post-box">
+    <label for="post-text"></label><textarea id="post-text" placeholder="Write something..." rows="3"></textarea>
+    <input type="file" id="post-media" multiple accept="image/*,video/*">
+    <button onclick="submitPost()">Post</button>
+</div>
+
+<div id="auth-popup" class="popup-overlay">
+    <div class="popup-content">
+        <button class="close-popup" onclick="closePopup()">❌</button>
+        <p class="popup-text">You need to log in to access this section.</p>
+        <a href="/login" class="btn">Log in</a>
+        <a href="/signup" class="btn">Sign up</a>
+    </div>
+</div>
+
 </body>
+
 </html>
