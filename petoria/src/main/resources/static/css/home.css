@@ -12,6 +12,14 @@ header {
   margin-bottom: 20px;
 }
 
+header .logo {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
 .top-bar {
   display: flex;
   justify-content: flex-end;

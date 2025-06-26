@@ -5,50 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24118ac2-078d-4de2-9d1e-f58392c4c6f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/BlogCommentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/BlogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/dto/BlogPostRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/dto/BlogPostResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/dto/NoticeResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/dto/PetResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/model/BlogPost.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/repository/BlogPostRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/BlogPostService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/db/migration/V16__add_blogpost_table.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/db/migration/V17__create_photo_tables.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/css/blog.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/blog.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/GetAPetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/GetAPetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/LostAndFoundCommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/LostAndFoundCommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/LostAndFoundController.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/controller/LostAndFoundController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/dto/LostAndFoundNoticeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/dto/NoticeDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/dto/PetDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/dto/PetDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/model/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/model/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/model/LostAndFoundNotice.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/model/Notice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/model/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/model/Pet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/repository/CommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/repository/LostAndFoundNoticeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/repository/NoticeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/LostAndFoundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/LostAndFoundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/PetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/PetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/java/com/petoria/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/img/default_profile_pic_petoria.png" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/img/default-pfp-petoria.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/auth-check.js" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/auth-check.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/get-a-pet.js" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/get-a-pet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/blog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/get-a-pet.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/get-a-pet.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/static/js/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/static/js/signup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/lost-and-found-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/lost-and-found-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/lost-and-found.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/lost-and-found.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/pet-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/pet-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/services.html" beforeDir="false" afterPath="$PROJECT_DIR$/petoria/src/main/resources/templates/services.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petoria/src/main/resources/templates/settings.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

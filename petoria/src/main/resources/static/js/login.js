@@ -37,7 +37,7 @@ function togglePassword(id, button) {
 const input = document.getElementById(id);
 const isVisible = input.type === "text";
 input.type = isVisible ? "password" : "text";
-button.textContent = isVisible ? "👁️" : "🙈";
+button.textContent = isVisible ? "🙈" : "👁️";
 }
 
 function showFlash(message, type = "success") {
